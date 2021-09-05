@@ -48,12 +48,15 @@ def get_kit_list(request):
     """
     List all the kits.
     """
+    def Convert(lst):
+        res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
+        return res_dct
     if request.method == 'GET':
         kit_list = Kit.objects.all()
         kit_serializer = KitSerializer(kit_list, many=True)
         items=[json.dumps(item) for item in kit_serializer.data]
         print(items)
-        return JsonResponse({'status': 'ok', 'items': items})
+        return JsonResponse({'status': 'ok', 'items': Convert(items)})
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
