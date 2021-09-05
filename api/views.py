@@ -67,9 +67,9 @@ def get_user_kits(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_user(request):
+def get_user(request, username):
     if request.method == 'GET':
-        user = User.objects.get(username=request.user)
+        user = User.objects.get(username=username)
         serializer = UserSerializer(user)
         return JsonResponse(serializer.data)
     
