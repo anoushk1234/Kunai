@@ -48,8 +48,9 @@ def get_kit_list(request):
     """
     List all the kits.
     """
-    def Convert(lst):
-        res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
+    def Convert(a):
+        it = iter(a)
+        res_dct = dict(zip(it, it))
         return res_dct
     if request.method == 'GET':
         kit_list = Kit.objects.all()
