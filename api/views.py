@@ -48,10 +48,9 @@ def get_kit_list(request):
     List all the kits.
     """
     if request.method == 'GET':
-        kits = Kit.objects.all()
-        serializer = KitSerializer(kits, many=True)
-        comment=KitComments.objects.all().get()
-        return JsonResponse(data={'comment':comment.comment})
+        kit_list = Kit.objects.all()
+        kit_serializer = KitSerializer(kit_list, many=True)
+        return JsonResponse(kit_serializer.data, safe=False)
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
