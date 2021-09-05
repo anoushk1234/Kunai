@@ -70,7 +70,7 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-SITE_ID = 2
+SITE_ID = 3
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
