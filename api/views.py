@@ -51,7 +51,7 @@ def get_kit_list(request):
         kits = Kit.objects.all()
         serializer = KitSerializer(kits, many=True)
         comment=KitComments.objects.all().get()
-        return JsonResponse(serializer.data,data={'comment':comment.comment})
+        return JsonResponse(data={'comment':comment.comment})
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
