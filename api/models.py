@@ -23,4 +23,4 @@ class KitComments(models.Model):
     ordering = ('created_at',)
   
   def __str__(self):
-    return 'Comment by {} on {}'.format(self.user, self.post) 
+    return '%s %s %s'%(self.user, self.kit,self.comment) 
