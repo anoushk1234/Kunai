@@ -8,6 +8,7 @@ from .serializers import KitSerializer, KitCommentsSerializer
 from twitterauth.serializers import UserSerializer
 from twitterauth.models import User
 from .models import *
+import json
 # Create your views here.
 
 @api_view(['GET'])
@@ -50,7 +51,7 @@ def get_kit_list(request):
     if request.method == 'GET':
         kit_list = Kit.objects.all()
         kit_serializer = KitSerializer(kit_list, many=True)
-        items=[str(item) for item in kit_serializer.data]
+        items=[json.dumps(item) for item in kit_serializer.data]
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
     
@@ -61,9 +62,9 @@ def get_user_kits(request):
     List all the kits.
     """
     if request.method == 'GET':
-        kits = Kit.objects.filter(user=request.user)
+        kits = Kit.objects.filter(user=request.user.username).get()
         serializer = KitSerializer(kits, many=True)
-        return JsonResponse(serializer.data)
+        return JsonResponse(str(kits), safe=False)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
