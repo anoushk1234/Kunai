@@ -42,7 +42,7 @@ def add_kit(request):
             return JsonResponse({'status': 'error', 'errors': kit_serializer.errors})
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def get_kit_list(request):
     """
     List all the kits.
