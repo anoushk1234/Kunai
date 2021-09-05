@@ -53,11 +53,13 @@ def get_kit_list(request):
         res_dct = dict(zip(it, it))
         return res_dct
     if request.method == 'GET':
+       
         kit_list = Kit.objects.all()
         kit_serializer = KitSerializer(kit_list, many=True)
         items=[json.dumps(item) for item in kit_serializer.data]
+        l=len(Convert(items))-5
         print(items)
-        return JsonResponse({'status': 'ok', 'items': Convert(items)})
+        return JsonResponse({'status': 'ok', 'items': str(Convert(items))[3:l]})
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
