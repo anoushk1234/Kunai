@@ -59,7 +59,7 @@ def get_kit_list(request):
         items=[json.dumps(item) for item in kit_serializer.data]
         l=len(Convert(items))-5
         print(items)
-        return JsonResponse({'status': 'ok', 'items': str(Convert(items))[3:l]})
+        return JsonResponse({'status': 'ok', 'items': items})
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
