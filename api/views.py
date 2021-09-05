@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .serializers import KitSerializer, KitCommentsSerializer
-
+from twitterauth.models import User
 from .models import *
 # Create your views here.
 
@@ -20,10 +20,10 @@ def add_kit_comment(request):
         data = request.data
         kit_id = data['kit_id']
         comment = data['comment']
-        user_id = request.user.id
-        comment_obj = KitComments(kit_id=kit_id,user="dummy", user_id='1', comment=comment)
+        user_id = User.objects.get(id=request.user.id).id
+        comment_obj = KitComments(kit_id=kit_id,user="dummy", user_id=user_id, comment=comment)
         comment_obj.save()
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'ok', 'comment': comment})
 
 
 
