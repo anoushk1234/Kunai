@@ -50,7 +50,7 @@ def get_kit_list(request):
     if request.method == 'GET':
         kit_list = Kit.objects.all()
         kit_serializer = KitSerializer(kit_list, many=True)
-        return JsonResponse(kit_serializer.data, safe=False)
+        return JsonResponse(kit_serializer.data)
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
