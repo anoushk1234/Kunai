@@ -70,8 +70,8 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-SITE_ID = 5
-# 5 for production, 4 for local
+SITE_ID = 6
+# 6 for production, 4 for local
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
