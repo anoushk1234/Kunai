@@ -25,7 +25,7 @@ class Kit(models.Model):
   cat_relation = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, default=None)
       
   def __str__(self):
-    return "%s %s %s %s %s %s"%(self.user, self.markdown_data, self.title, self.upvotes, self.downvotes, self.categories, self.cat_relation)
+    return "%s %s %s %s %s %s %s"%(self.user, self.markdown_data, self.title, self.upvotes, self.downvotes, self.categories, self.cat_relation)
   
 class KitComments(models.Model):
   kit = models.ForeignKey(Kit, on_delete=models.CASCADE,related_name='comments')

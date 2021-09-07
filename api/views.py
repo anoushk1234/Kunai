@@ -69,7 +69,7 @@ def get_comments_for_kit(request, pk):
 @permission_classes([IsAuthenticated])
 def add_kit(request):
     '''
-    user,title,markdown_data,upvotes,downvotes
+    user,title,markdown_data,upvotes,downvotes,Categories,cat_id
     '''
     if request.method == 'POST':
         data = request.data
@@ -77,10 +77,26 @@ def add_kit(request):
         kit_serializer = KitSerializer(data=data)
         if kit_serializer.is_valid():
             kit_serializer.save()
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         else:
             return JsonResponse({'status': 'error', 'errors': kit_serializer.errors})
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_kit(request, pk):
+    if request.method == 'POST':
+        kit_obj = Kit.objects.filter(id=pk).get()
+        data = request.data
+        try:
+            kit_obj.title = data['title']
+            kit_obj.markdown_data = data['markdown_data']
+            kit_obj.categories = data['categories']
+            kit_obj.cat_relation = data['cat_relation']
+            kit_serializer = KitSerializer.update(kit_obj, data)
+            return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'errors': str(e)})
+            
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -100,6 +116,27 @@ def get_kit_list(request):
         l = len(Convert(items))-5
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_kit_by_category(request, category):
+    """
+    List all the kits.
+    """
+    if request.method == 'GET':
+        kit_list = Kit.objects.filter(categories=category)
+        kit_serializer = KitSerializer(kit_list, many=True)
+        items = [json.dumps(item) for item in kit_serializer.data]
+        return JsonResponse({'status': 'ok', 'items': items})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def delete_kit(request, pk):
+    if request.method == 'GET':
+        kit = Kit.objects.get(id=pk)
+        kit.delete()
+        return JsonResponse({'status': 'ok'})
 
 
 @api_view(['GET'])
