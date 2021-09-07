@@ -70,8 +70,8 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-SITE_ID = 3
-
+SITE_ID = 5
+# 5 for production, 4 for local
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -154,7 +154,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

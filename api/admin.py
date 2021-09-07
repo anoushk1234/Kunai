@@ -5,7 +5,7 @@ from django.contrib import admin
 from .models import *
 #add model name
 admin.site.register(Kit)
-
+admin.site.register(Category)
 @admin.register(KitComments)
 class KitCommentsAdmin(admin.ModelAdmin):
     list_display = ('id', 'kit', 'comment', 'user', 'created_at', 'updated_at')

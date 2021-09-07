@@ -1,31 +1,4 @@
 {
     "python.pythonPath": "C:\\Users\\Anoushk\\envs\\kunai\\Scripts\\python.exe",
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "kunai db",
-            "database": "kunai",
-            "username": "maverick",
-            "password": "maverick1828"
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "kunai",
-            "database": "kunai",
-            "username": "admin",
-            "password": "1234"
-        }
-    ]
+    "sqltools.connections": []
 }

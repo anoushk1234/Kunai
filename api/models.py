@@ -1,13 +1,31 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
+class Category(models.Model):
+  category=models.CharField(max_length=100,null=True,default=None)
+  #related_kits=models.ManyToManyField('Kit', related_name='related_categories')
+  
+  def __str__(self):
+    return '%s'%(self.category)
+  
 class Kit(models.Model):
+  CATEGORIES = (
+    ('Web Dev', 'Web Dev'),
+    ('Grapic Design', 'Grapic Design'),
+    ('Data Science', 'Data Science'),
+    ('Digital Marketing', 'Digital Marketing'),
+  )
   user = models.CharField(max_length=200)
+  title=models.CharField(max_length=200, default='')
   markdown_data = models.TextField(default='')
+  upvotes = models.IntegerField(default=0)
+  downvotes = models.IntegerField(default=0)
+  categories = models.TextField(choices=CATEGORIES, default='No Category')
+  cat_relation = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, default=None)
       
   def __str__(self):
-    return "%s %s"%(self.user, self.markdown_data)
+    return "%s %s %s %s %s %s"%(self.user, self.markdown_data, self.title, self.upvotes, self.downvotes, self.categories, self.cat_relation)
   
 class KitComments(models.Model):
   kit = models.ForeignKey(Kit, on_delete=models.CASCADE,related_name='comments')

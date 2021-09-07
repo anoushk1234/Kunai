@@ -1,37 +1,76 @@
+from inspect import isabstract
+import api
 import re
 from django.shortcuts import render
 from django.http import JsonResponse
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .serializers import KitSerializer, KitCommentsSerializer
+from .serializers import KitSerializer, KitCommentsSerializer,CategorySerializer
 from twitterauth.serializers import UserSerializer
 from twitterauth.models import User
 from .models import *
 import json
 # Create your views here.
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def health(request):
     return Response({"status": "ok"})
 
+
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def add_kit_comment(request):
     if request.method == 'POST':
         data = request.data
         kit_id = data['kit_id']
         comment = data['comment']
         print(data)
-        #user_id = User.objects.get(username="anoushk").
-        comment_obj = KitComments.objects.get_or_create(kit_id=kit_id, id=1, comment=comment)
+        # user_id = User.objects.get(username="anoushk").
+        comment_obj = KitComments.objects.get_or_create(
+            kit_id=kit_id, id=1, comment=comment)
         return JsonResponse({'status': 'ok', 'comment': str(comment_obj)})
 
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+def edit_kit_comment(request):
+    data = request.data
+    kit_id = data['kit_id']
+    comment_id = data['comment_id']
+    comment = data['comment']
+    print(data)
+    if 1 == KitComments.objects.get(id=comment_id).user_id:
+        comment_obj = KitComments.objects.get(id=comment_id, kit_id=kit_id)
+        comment_obj.comment = comment
+        comment_obj.save()
+        return JsonResponse({'status': 'ok', 'comment': str(comment_obj.comment),'user': str(comment_obj.user)})
+    else:
+        return JsonResponse({'status': 'error you are unauthorized'})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_comments_for_kit(request, pk):
+    if pk == 0:
+        comments = KitComments.objects.all()
+    else:
+        comments = KitComments.objects.filter(kit_id=pk)
+    serializer = KitCommentsSerializer(comments, many=True)
+    if serializer.data:
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return JsonResponse({'status': 'ok', 'comment': 'No comment'})
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add_kit(request):
+    '''
+    user,title,markdown_data,upvotes,downvotes
+    '''
     if request.method == 'POST':
         data = request.data
         print(data)
@@ -41,6 +80,7 @@ def add_kit(request):
             return JsonResponse({'status': 'ok'})
         else:
             return JsonResponse({'status': 'error', 'errors': kit_serializer.errors})
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -53,14 +93,15 @@ def get_kit_list(request):
         res_dct = dict(zip(it, it))
         return res_dct
     if request.method == 'GET':
-       
+
         kit_list = Kit.objects.all()
         kit_serializer = KitSerializer(kit_list, many=True)
-        items=[json.dumps(item) for item in kit_serializer.data]
-        l=len(Convert(items))-5
+        items = [json.dumps(item) for item in kit_serializer.data]
+        l = len(Convert(items))-5
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
-    
+
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user_kits(request):
@@ -72,6 +113,7 @@ def get_user_kits(request):
         serializer = KitSerializer(kits, many=True)
         return JsonResponse(str(kits), safe=False)
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user(request, username):
@@ -79,4 +121,3 @@ def get_user(request, username):
         user = User.objects.get(username=username)
         serializer = UserSerializer(user)
         return JsonResponse(serializer.data)
-    
