@@ -6,6 +6,7 @@ urlpatterns = [
     # path('', include('djoser.urls.authtoken')),
     path('health/', views.health_check, name='health'),
     path('home/', views.home, name='home'),
-    # path('userdetails/', views.get_user_details, name='userdetails'),
+    #path('userdetails/', views.login, name='login'),
+    path('userdetails/', views.get_user_details, name='userdetails'),
     # path('home/', views.home, name='home'),
 ]
