@@ -19,7 +19,7 @@ from environ.environ import Env
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Initialise environment 
+# Initialise environment
 env = environ.Env()
 environ.Env.read_env()
 
@@ -30,9 +30,12 @@ environ.Env.read_env()
 SECRET_KEY = '-c1cg^-j%2l-e_-(0+ey030&yvz@^k$x@%w0pwgm#of%)qrqe+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if env('SETMODE') == 'prod':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ['https://kunai-learn.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['https://kunai-learn.herokuapp.com', '127.0.0.1']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -46,7 +49,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-if env('SETMODE')=='prod':
+if env('SETMODE') == 'prod':
     ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
     LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
     ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
@@ -54,7 +57,7 @@ else:
     ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
     LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
     ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
-    
+
 SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, screen_name,access_token,access_token_secret,profile_image_url,description'
 }
@@ -81,12 +84,12 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-if env('SETMODE')=='prod':
-    SITE_ID=6
+if env('SETMODE') == 'prod':
+    SITE_ID = 6
 else:
-    SITE_ID=4
+    SITE_ID = 4
 # 6 for production, 4 for local
-#use the .env file to check if SETTINGS_MODE is dev, if it is set SITE_ID to 6 else 4
+# use the .env file to check if SETTINGS_MODE is dev, if it is set SITE_ID to 6 else 4
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -113,7 +116,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # "allauth.account.context_processors.account",
                 # "allauth.socialaccount.context_processors.socialaccount",
-                
+
             ],
         },
     },
@@ -127,7 +130,7 @@ WSGI_APPLICATION = 'todo_drf.wsgi.application'
 AUTH_USER_MODEL = 'twitterauth.User'
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'kunai',
         'HOST': '127.0.0.1',
         'PORT': '3306',
