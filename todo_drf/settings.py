@@ -13,10 +13,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import django_heroku
 import dj_database_url
+import environ
+from environ.environ import Env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Initialise environment 
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -41,9 +46,15 @@ REST_FRAMEWORK = {
     ]
 }
 
-ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
+if env('SETMODE')=='prod':
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
+    LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
+else:
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
+    LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
+    
 SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, screen_name,access_token,access_token_secret,profile_image_url,description'
 }
@@ -70,8 +81,12 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-SITE_ID = 6
+if env('SETMODE')=='prod':
+    SITE_ID=6
+else:
+    SITE_ID=4
 # 6 for production, 4 for local
+#use the .env file to check if SETTINGS_MODE is dev, if it is set SITE_ID to 6 else 4
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
