@@ -35,7 +35,7 @@ if env('SETMODE') == 'prod':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['https://kunai-learn.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['https://kunaikit.herokuapp.com', '127.0.0.1']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
