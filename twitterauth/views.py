@@ -36,4 +36,4 @@ def health_check(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def home(request, *args, **kwargs):
-    return Response(status=status.HTTP_200_OK, data={'message': 'Welcome to Home'})
+    return redirect('/dashboard')
