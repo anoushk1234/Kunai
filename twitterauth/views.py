@@ -36,4 +36,4 @@ def health_check(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def home(request, *args, **kwargs):
-    return redirect('/dashboard')
+    return redirect('https://kunai-frontend.vercel.app/dashboard')
