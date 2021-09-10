@@ -17,7 +17,7 @@ class Kit(models.Model):
     ('Digital Marketing', 'Digital Marketing'),
   )
   user = models.CharField(max_length=200)
-  profile_image = models.URLField(max_length=200, default=None)
+  #profile_image = models.URLField(max_length=200, default=None)
   title=models.CharField(max_length=200, default='')
   markdown_data = models.TextField(default='')
   upvotes = models.IntegerField(default=0)
