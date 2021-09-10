@@ -35,7 +35,7 @@ if env('SETMODE') == 'prod':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['https://kunaikit.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['https://kunaikit.herokuapp.com', '127.0.0.1','https://kunai-frontend.vercel.app/','localhost','0.0.0.0']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
