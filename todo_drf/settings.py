@@ -35,7 +35,8 @@ if env('SETMODE') == 'prod':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['https://kunaikit.herokuapp.com', '127.0.0.1']
+CORS_ALLOW_ALL_ORIGINS=True
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -80,6 +81,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'api.apps.ApiConfig',
     'django.contrib.sites',
+    'corsheaders',
     'rest_framework',
 
 ]
@@ -95,6 +97,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
