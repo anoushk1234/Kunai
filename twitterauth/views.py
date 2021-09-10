@@ -71,5 +71,5 @@ def get_user_details(request, *args, **kwargs):
 
         return JsonResponse(user_details, status=status.HTTP_200_OK)
     except tweepy.TweepError as e:
-        print(e)
-        return JsonResponse({'error': 'Invalid username'}, status=status.HTTP_400_BAD_REQUEST, error=e)
+
+        return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST, )
