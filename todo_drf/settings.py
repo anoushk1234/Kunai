@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'djoser',
     'twitterauth.apps.TwitterauthConfig',
     'allauth',
+    'psycopg2',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.twitter',
