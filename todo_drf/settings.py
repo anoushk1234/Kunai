@@ -31,7 +31,7 @@ SECRET_KEY = '-c1cg^-j%2l-e_-(0+ey030&yvz@^k$x@%w0pwgm#of%)qrqe+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if env('SETMODE') == 'prod':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
