@@ -13,15 +13,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-import environ
-from environ.environ import Env
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Initialise environment
-env = environ.Env()
-environ.Env.read_env()
+load_dotenv()
+SETMODE = os.environ['SETMODE']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -30,12 +30,12 @@ environ.Env.read_env()
 SECRET_KEY = '-c1cg^-j%2l-e_-(0+ey030&yvz@^k$x@%w0pwgm#of%)qrqe+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if env('SETMODE') == 'prod':
+if SETMODE == 'prod':
     DEBUG = True
 else:
     DEBUG = True
 
-CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
@@ -50,7 +50,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-if env('SETMODE') == 'prod':
+if SETMODE == 'prod':
     ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
     LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
     ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
@@ -86,7 +86,7 @@ INSTALLED_APPS = [
 
 ]
 SESSION_SAVE_EVERY_REQUEST = True
-if env('SETMODE') == 'prod':
+if SETMODE == 'prod':
     SITE_ID = 6
 else:
     SITE_ID = 4
