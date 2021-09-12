@@ -69,7 +69,7 @@ def get_comments_for_kit(request, pk):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 @method_decorator(csrf_exempt, name='dispatch')
 def add_kit(request):
     '''
