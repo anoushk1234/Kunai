@@ -12,6 +12,8 @@ from twitterauth.models import User
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from .models import *
 import json
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -67,7 +69,8 @@ def get_comments_for_kit(request, pk):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
+@method_decorator(csrf_exempt, name='dispatch')
 def add_kit(request):
     '''
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
