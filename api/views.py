@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .serializers import KitSerializer, KitCommentsSerializer,CategorySerializer
+from .serializers import KitSerializer, KitCommentsSerializer, CategorySerializer
 from twitterauth.serializers import UserSerializer
 from twitterauth.models import User
 from .models import *
@@ -46,7 +46,7 @@ def edit_kit_comment(request):
         comment_obj = KitComments.objects.get(id=comment_id, kit_id=kit_id)
         comment_obj.comment = comment
         comment_obj.save()
-        return JsonResponse({'status': 'ok', 'comment': str(comment_obj.comment),'user': str(comment_obj.user)})
+        return JsonResponse({'status': 'ok', 'comment': str(comment_obj.comment), 'user': str(comment_obj.user)})
     else:
         return JsonResponse({'status': 'error you are unauthorized'})
 
@@ -72,14 +72,25 @@ def add_kit(request):
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
     '''
     if request.method == 'POST':
-        data = request.data
-        print(data)
-        kit_serializer = KitSerializer(data=data)
+        user = request.user.username
+        # print(data)
+        title = request.data['title']
+        markdown_data = request.data['markdown_data']
+        categories = request.data['categories']
+        cat_id = request.data['cat_id']
+        kit_serializer = KitSerializer(data={'user': user, 'title': title, 'markdown_data': markdown_data,
+                                       'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_id': cat_id})
+        if kit_serializer.is_valid():
+            kit_serializer.save()
+            return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
+        else:
+            return JsonResponse({'status': 'error', 'kit': str(kit_serializer.errors)})
         if kit_serializer.is_valid():
             kit_serializer.save()
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         else:
             return JsonResponse({'status': 'error', 'errors': kit_serializer.errors})
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -96,7 +107,7 @@ def update_kit(request, pk):
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         except Exception as e:
             return JsonResponse({'status': 'error', 'errors': str(e)})
-            
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -116,6 +127,7 @@ def get_kit_list(request):
         l = len(Convert(items))-5
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
