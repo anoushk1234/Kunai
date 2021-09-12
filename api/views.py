@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from .serializers import KitSerializer, KitCommentsSerializer, CategorySerializer
 from twitterauth.serializers import UserSerializer
 from twitterauth.models import User
+from allauth.socialaccount.models import SocialAccount, SocialToken
 from .models import *
 import json
 # Create your views here.
@@ -66,7 +67,7 @@ def get_comments_for_kit(request, pk):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def add_kit(request):
     '''
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
@@ -74,23 +75,22 @@ def add_kit(request):
     if request.method == 'POST':
         user = request.user.username
         # print(data)
-        title = request.data['title']
-        markdown_data = request.data['markdown_data']
-        categories = request.data['categories']
-        cat_id = request.data['cat_id']
-        kit_serializer = KitSerializer(data={'user': user, 'title': title, 'markdown_data': markdown_data,
+        try:
+         profile_image_url = SocialAccount.objects.get(extra_data__contains=user).extra_data['profile_image_url']
+         title = request.data['title']
+         markdown_data = request.data['markdown_data']
+         categories = request.data['categories']
+         cat_id = request.data['cat_id']
+         kit_serializer = KitSerializer(data={'user': user,"profile_image":profile_image_url, 'title': title, 'markdown_data': markdown_data,
                                        'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_id': cat_id})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'status': 'error', 'message': 'Invalid data'})
         if kit_serializer.is_valid():
             kit_serializer.save()
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         else:
-            return JsonResponse({'status': 'error', 'kit': str(kit_serializer.errors)})
-        if kit_serializer.is_valid():
-            kit_serializer.save()
-            return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
-        else:
-            return JsonResponse({'status': 'error', 'errors': kit_serializer.errors})
-
+            return JsonResponse({'status': 'error', 'errors': str(kit_serializer.errors)})
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
