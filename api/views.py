@@ -77,15 +77,17 @@ def add_kit(request):
     '''
     if request.method == 'POST':
         user = request.user.username
-        # print(data)
+        # print(request.user.id)
         try:
-         profile_image_url = SocialAccount.objects.filter(extra_data__contains=user).first().extra_data['profile_image_url']
-         title = request.data['title']
-         markdown_data = request.data['markdown_data']
-         categories = request.data['categories']
-         cat_id = request.data['cat_id']
-         kit_serializer = KitSerializer(data={'user': user,"profile_image":profile_image_url, 'title': title, 'markdown_data': markdown_data,
-                                       'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_id': cat_id})
+            user_obj = SocialAccount.objects.get(user_id=request.user.id)
+            # print(str(user_obj))
+            profile_image_url = user_obj.extra_data['profile_image_url']
+            title = request.data['title']
+            markdown_data = request.data['markdown_data']
+            categories = request.data['categories']
+            cat_id = request.data['cat_id']
+            kit_serializer = KitSerializer(data={'user': user, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
+                                                 'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_relation': cat_id})
         except Exception as e:
             print(e)
             return JsonResponse({'status': 'error', 'message': 'Invalid data'})
@@ -94,6 +96,7 @@ def add_kit(request):
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         else:
             return JsonResponse({'status': 'error', 'errors': str(kit_serializer.errors)})
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
