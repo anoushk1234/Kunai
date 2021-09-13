@@ -79,7 +79,7 @@ def add_kit(request):
         user = request.user.username
         print("user_id",request.user.id)
         try:
-            user_obj = SocialAccount.objects.get(user_id=request.user.user_id)
+            user_obj = SocialAccount.objects.get(user_id=request.user.id)
             print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
             title = request.data['title']
