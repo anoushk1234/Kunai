@@ -81,6 +81,7 @@ def add_kit(request):
         #print("user_id", request.user.id)
         try:
             for user in SocialAccount.objects.all():
+                print(str(user))
                 if user.extra_data['screen_name'] == screen_name:
                     user_obj=user
                     break
