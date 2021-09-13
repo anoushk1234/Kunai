@@ -77,9 +77,9 @@ def add_kit(request):
     '''
     if request.method == 'POST':
         user = request.user.username
-        print(request.user.id)
+        print("user_id",request.user.id)
         try:
-            user_obj = SocialAccount.objects.get(user_id=request.user.id)
+            user_obj = SocialAccount.objects.get(user_id=request.user.user_id)
             print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
             title = request.data['title']
