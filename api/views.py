@@ -77,9 +77,9 @@ def add_kit(request):
     '''
     if request.method == 'POST':
         screen_name = request.user.username
-        #print("user_id", request.user.id)
+        print("user_id", screen_name)
         id = User.objects.get(username=screen_name).id
-
+        print("mainuser_id", id)
         try:
             user_obj = SocialAccount.objects.get(user_id=id).extra_data
 
@@ -94,7 +94,7 @@ def add_kit(request):
                                                  'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_relation': cat_id})
         except Exception as e:
             print(e)
-            return JsonResponse({'status': 'error', 'message': 'Invalid data'})
+            return JsonResponse({'status': 'error', 'message': 'Invalid data', 'error': str(e)})
         if kit_serializer.is_valid():
             kit_serializer.save()
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
