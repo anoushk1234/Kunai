@@ -77,10 +77,10 @@ def add_kit(request):
     '''
     if request.method == 'POST':
         user = request.user.username
-        # print(request.user.id)
+        print(request.user.id)
         try:
             user_obj = SocialAccount.objects.get(user_id=request.user.id)
-            # print(str(user_obj))
+            print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
             title = request.data['title']
             markdown_data = request.data['markdown_data']
