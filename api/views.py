@@ -76,8 +76,8 @@ def add_kit(request):
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
     '''
     if request.method == 'POST':
-        screen_name = request.user.username
-        print("user_id", screen_name)
+        screen_name = str(request.user)
+        print("screen_name", screen_name)
         id = User.objects.get(username=screen_name).id
         print("mainuser_id", id)
         try:
