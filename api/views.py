@@ -79,8 +79,8 @@ def add_kit(request):
         screen_name = request.user.username
         #print("user_id", request.user.id)
         try:
-            user_obj = SocialAccount.objects.filter(
-                extra_data__screen_name=screen_name)
+            user_obj = SocialAccount.objects.get(
+                extra_data__contains='"screen_name":"{}"'.format(screen_name))
             #user_id = user_obj.user_id
             print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
