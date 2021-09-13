@@ -67,6 +67,12 @@ def get_comments_for_kit(request, pk):
     else:
         return JsonResponse({'status': 'ok', 'comment': 'No comment'})
 
+@staticmethod
+def get_user(id_):
+    try:
+        return User.objects.get(pk=id_)
+    except User.DoesNotExist:
+        return None
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -79,7 +85,7 @@ def add_kit(request):
         screen_name = str(request.user)
         print("screen_name", screen_name)
         #id = User.objects.get(username=screen_name).id
-        print("mainuser_id", request.id)
+        print("mainuser_id", request.user.id)
         try:
             user_obj = SocialAccount.objects.get(user_id=request.id).extra_data
 
