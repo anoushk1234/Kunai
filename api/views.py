@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def health(request):
-    return Response({"status": "ok"})
+    return Response({"status": "ok", "user": request.user.username})
 
 
 @api_view(['POST'])
@@ -76,10 +76,11 @@ def add_kit(request):
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
     '''
     if request.method == 'POST':
-        user = request.user.username
-        print("user_id",request.user.id)
+        screen_name = request.user.username
+        #print("user_id", request.user.id)
         try:
-            user_obj = SocialAccount.objects.get(user_id=request.user.id)
+            user_obj = SocialAccount.objects.get(
+                extra_data__contains={'screen_name': screen_name})
             print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
             title = request.data['title']
