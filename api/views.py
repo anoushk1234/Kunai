@@ -78,10 +78,10 @@ def add_kit(request):
     if request.method == 'POST':
         screen_name = str(request.user)
         print("screen_name", screen_name)
-        id = User.objects.get(username=screen_name).id
-        print("mainuser_id", id)
+        #id = User.objects.get(username=screen_name).id
+        print("mainuser_id", request.id)
         try:
-            user_obj = SocialAccount.objects.get(user_id=id).extra_data
+            user_obj = SocialAccount.objects.get(user_id=request.id).extra_data
 
             #user_id = user_obj.user_id
             print(str(user_obj))
