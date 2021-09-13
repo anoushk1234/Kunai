@@ -80,14 +80,15 @@ def add_kit(request):
         #print("user_id", request.user.id)
         try:
             user_obj = SocialAccount.objects.get(
-                extra_data__contains={'screen_name': screen_name})
+                extra_data__contains='"screen_name":"{}"'.format(screen_name))
+            #user_id = user_obj.user_id
             print(str(user_obj))
             profile_image_url = user_obj.extra_data['profile_image_url']
             title = request.data['title']
             markdown_data = request.data['markdown_data']
             categories = request.data['categories']
             cat_id = request.data['cat_id']
-            kit_serializer = KitSerializer(data={'user': user, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
+            kit_serializer = KitSerializer(data={'user': screen_name, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
                                                  'upvotes': 0, 'downvotes': 0, 'categories': categories, 'cat_relation': cat_id})
         except Exception as e:
             print(e)
