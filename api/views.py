@@ -82,12 +82,12 @@ def add_kit(request):
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
     '''
     if request.method == 'POST':
-        screen_name = str(request.user)
+        screen_name = str(request.user.username)
         print("screen_name", screen_name)
-        #id = User.objects.get(username=screen_name).id
-        print("mainuser_id", request.user.id)
+        id = User.objects.get(username=screen_name).id
+        print("mainuser_id", request.user.username)
         try:
-            user_obj = SocialAccount.objects.get(user_id=request.id).extra_data
+            user_obj = SocialAccount.objects.get(user_id=id).extra_data
 
             #user_id = user_obj.user_id
             print(str(user_obj))
