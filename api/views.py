@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def health(request):
-    return Response({"status": "ok", "user": request.user.username})
+    return JsonResponse({"status": "ok", "user": request.user.username})
 
 
 @api_view(['POST'])
