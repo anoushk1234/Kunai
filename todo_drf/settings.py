@@ -53,7 +53,7 @@ REST_FRAMEWORK = {
 if SETMODE == 'prod':
     ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
     LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
-    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunai-frontend.vercel.app/'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://skeltz-frontend.vercel.app/'
 else:
     ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
     LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'

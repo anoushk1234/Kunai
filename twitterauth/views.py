@@ -48,7 +48,7 @@ def health_check(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def home(request, *args, **kwargs):
-    return redirect('https://kunai-frontend.vercel.app/dashboard')
+    return redirect('https://skeltz-frontend.vercel.app/dashboard')
 
 
 @api_view(['GET'])
