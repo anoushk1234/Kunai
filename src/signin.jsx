@@ -30,7 +30,7 @@ export default function SignIn() {
                 type="button"
                 onClick={() => {
                   window.location.href =
-                    "/accounts/twitter/login";
+                    "https://kunaikit.herokuapp.com/accounts/twitter/login";
                 }}
                 className="inline-flex w-full px-4 py-3 font-semibold text-black dark:text-black hover:text-white dark:hover:text-white transition duration-500 ease-in-out transform bg-white border rounded-lg border-blueGray-300 hover:bg-indigo-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 "
               >
