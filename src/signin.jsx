@@ -1,10 +1,9 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import ThemeSwitch from "./components/ThemeSwitch";
 
 export default function SignIn() {
   return (
-     
     <div className="mt-6 mb-6">
       <div>
         <div className="flex flex-row justify-between">
@@ -29,8 +28,13 @@ export default function SignIn() {
               <button
                 type="button"
                 onClick={() => {
-                  window.location.href =
-                    "https://kunaikit.herokuapp.com/accounts/twitter/login";
+                  if (process.env.REACT_APP_MODE === "prod") {
+                    window.location.href =
+                      "https://kunaikit.herokuapp.com/accounts/twitter/login";
+                  }else{
+                    window.location.href =
+                      "http://127.0.0.1:8000/accounts/twitter/login";
+                  }
                 }}
                 className="inline-flex w-full px-4 py-3 font-semibold text-black dark:text-black hover:text-white dark:hover:text-white transition duration-500 ease-in-out transform bg-white border rounded-lg border-blueGray-300 hover:bg-indigo-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 "
               >
@@ -55,6 +59,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-    
   );
 }

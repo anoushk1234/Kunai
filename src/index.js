@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 // import {ThemeProvider} from "styled-components";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import SignIn from "./signin";
 import Dashboard from "./dashboard";
