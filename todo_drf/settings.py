@@ -51,13 +51,13 @@ REST_FRAMEWORK = {
 }
 
 if SETMODE == 'prod':
-    ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/dashboard/'
-    LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/dashboard/'
-    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/'
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/#/dashboard/'
+    LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/#/dashboard/'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/#/'
 else:
-    ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/dashboard'
-    LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/dashboard'
-    ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/'
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/#/dashboard'
+    LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/#/dashboard'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/#/'
 
 SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, screen_name,access_token,access_token_secret,profile_image_url,description'
