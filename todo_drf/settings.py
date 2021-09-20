@@ -90,7 +90,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 if SETMODE == 'prod':
     SITE_ID = 7
 else:
-    SITE_ID = 8
+    SITE_ID = 4
 # 6 for production, 4 for local
 # use the .env file to check if SETTINGS_MODE is dev, if it is set SITE_ID to 6 else 4
 MIDDLEWARE = [
