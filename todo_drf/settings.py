@@ -51,13 +51,13 @@ REST_FRAMEWORK = {
 }
 
 if SETMODE == 'prod':
-    ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
-    LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/auth/home'
-    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://skeltz-frontend.vercel.app/'
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'https://kunaikit.herokuapp.com/dashboard/'
+    LOGIN_REDIRECT_URL = 'https://kunaikit.herokuapp.com/dashboard/'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'https://kunaikit.herokuapp.com/'
 else:
-    ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
-    LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
-    ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/auth/home'
+    ACCOUNT_SIGNUP_REDIRECT_URL = 'http://127.0.0.1:8000/dashboard'
+    LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/dashboard'
+    ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/'
 
 SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, screen_name,access_token,access_token_secret,profile_image_url,description'
@@ -110,7 +110,8 @@ ROOT_URLCONF = 'todo_drf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR + '/skeltz_frontend/build', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -181,6 +182,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR + '/skeltz_frontend/build/static/',
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
