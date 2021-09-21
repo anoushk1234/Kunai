@@ -9,7 +9,7 @@
 /coverage
 .env
 # production
-/skeltz_frontend/build
+
 
 # misc
 .DS_Store
