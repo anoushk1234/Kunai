@@ -29,7 +29,7 @@ export default function SignIn() {
                 type="button"
                 onClick={() => {
                   //console.log(process.env.REACT_APP_MODE);
-                  if (process.env.REACT_APP_MODE === "prod") {
+                  if (process.env.REACT_APP_MODE == 'prod') {
                     //console.log(process.env.REACT_APP_MODE);
                     window.location.href =
                       "https://kunaikit.herokuapp.com/accounts/twitter/login";
