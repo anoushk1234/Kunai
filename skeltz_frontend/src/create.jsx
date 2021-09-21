@@ -31,7 +31,13 @@ function Create() {
         cat_id: "1",
       };
 
-      axios.post(API, postData).then((res1) => console.log(res1));
+      axios
+        .post(API, postData, {
+          headers: {
+            "X-CSRFTOKEN": "iq5Meqm2tVbJKlHlbkLn3hRX6PgKgEQuSWlQbmGcpXhoNPREuuGdtoAb041NExUi",
+          },
+        })
+        .then((res1) => console.log(res1));
     }
   };
 
