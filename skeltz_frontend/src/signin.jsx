@@ -28,10 +28,12 @@ export default function SignIn() {
               <button
                 type="button"
                 onClick={() => {
+                  //console.log(process.env.REACT_APP_MODE);
                   if (process.env.REACT_APP_MODE === "prod") {
+                    //console.log(process.env.REACT_APP_MODE);
                     window.location.href =
                       "https://kunaikit.herokuapp.com/accounts/twitter/login";
-                  }else{
+                  } else {
                     window.location.href =
                       "http://127.0.0.1:8000/accounts/twitter/login";
                   }
