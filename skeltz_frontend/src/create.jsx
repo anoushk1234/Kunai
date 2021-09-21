@@ -7,8 +7,8 @@ function Create() {
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
   const [username, setUsername] = useState("");
-  const API = "/api/addkit/";
-  const userAPI = "/auth/userdetails/";
+  const API = "https://kunaikit.herokuapp.com/api/addkit/";
+  const userAPI = "https://kunaikit.herokuapp.com/auth/userdetails/";
   // const allCookies = cookies();
   // console.log(allCookies);
   // axios
