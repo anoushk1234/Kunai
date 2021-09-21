@@ -29,14 +29,13 @@ export default function SignIn() {
                 type="button"
                 onClick={() => {
                   //console.log(process.env.REACT_APP_MODE);
-                  if (process.env.REACT_APP_MODE == 'prod') {
-                    //console.log(process.env.REACT_APP_MODE);
-                    window.location.href =
-                      "https://kunaikit.herokuapp.com/accounts/twitter/login";
-                  } else {
-                    window.location.href =
-                      "http://127.0.0.1:8000/accounts/twitter/login";
-                  }
+                  // if (process.env.REACT_APP_MODE == 'prod') {
+                  //console.log(process.env.REACT_APP_MODE);
+                  window.location.href =
+                    "https://kunaikit.herokuapp.com/accounts/twitter/login";
+                  //for testing on local uncomment this
+                  // window.location.href =
+                  //   "http://127.0.0.1:8000/accounts/twitter/login";
                 }}
                 className="inline-flex w-full px-4 py-3 font-semibold text-black dark:text-black hover:text-white dark:hover:text-white transition duration-500 ease-in-out transform bg-white border rounded-lg border-blueGray-300 hover:bg-indigo-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 "
               >
