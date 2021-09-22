@@ -9,6 +9,7 @@ import SignIn from "./signin";
 import Dashboard from "./dashboard";
 import Create from "./create";
 import Account from "./account";
+import KitPage from './kitpage';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/create" component={Create} />
         <Route path="/account" component={Account} />
+        <Route path="/kit/:slug" component={KitPage} />
         {/* </ThemeProvider> */}
       </Switch>
     </Router>
