@@ -10,7 +10,7 @@ import ReactHtmlParser from "react-html-parser";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 // import { cookieCutter } from 'cookie-cutter';
-
+import thispersondoesnotexist from "./thispersondoesnotexist.jpg";
 
 export async function markdownToHtml(markdown) {
   const result = await remark().use(html).process(markdown);
@@ -26,6 +26,7 @@ export default function Dashboard() {
   // const [userImage, setUserImage] = useState([
   //   "/images/thispersondoesnotexist.jpg",
   // ]);
+  console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -117,16 +118,12 @@ export default function Dashboard() {
                   <div className="flex justify-between">
                     <div className="flex flew-row gap-4">
                       <div className="relative w-12 h-12">
-                        <div
+                        <img
                           className="rounded-full border border-gray-100 shadow-sm"
-                          src={
-                            JSON.parse(item)["profile_image"]
-                              ? JSON.parse(item)["profile_image"]
-                              : "/images/thispersondoesnotexist.jpg"
-                          }
+                          src={JSON.parse(item)["profile_image"]}
                           alt="User Avatar"
-                          width={32}
-                          height={32}
+                          width={320}
+                          height={320}
                         />
                       </div>
                       <div>
