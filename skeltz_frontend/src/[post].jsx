@@ -23,9 +23,9 @@ export default function dashboard() {
                         <div className="flex justify-between">
                             <div className="flex flew-row gap-4">
                             <div class="relative w-12 h-12">
-                                <Image 
+                                <img 
                                     className="rounded-full border border-gray-100 shadow-sm" 
-                                    src="/images/thispersondoesnotexist.jpg" 
+                                    src="/imgs/thispersondoesnotexist.jpg" 
                                     alt="User Avatar"
                                     width={32}
                                     height={32} />
