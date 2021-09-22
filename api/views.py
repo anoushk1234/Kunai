@@ -144,6 +144,16 @@ def get_kit_list(request):
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_kit_by_kit_id(request, pk):
+    """
+    List kit by kit_id.
+    """
+    if request.method == 'GET':
+        kit_obj = Kit.objects.filter(id=pk).get()
+        kit_serializer = KitSerializer(kit_obj)
+        return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
