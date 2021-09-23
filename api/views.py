@@ -67,12 +67,14 @@ def get_comments_for_kit(request, pk):
     else:
         return JsonResponse({'status': 'ok', 'comment': 'No comment'})
 
+
 @staticmethod
 def get_user(id_):
     try:
         return User.objects.get(pk=id_)
     except User.DoesNotExist:
         return None
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -144,6 +146,7 @@ def get_kit_list(request):
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_by_kit_id(request, pk):
@@ -153,7 +156,8 @@ def get_kit_by_kit_id(request, pk):
     if request.method == 'GET':
         kit_obj = Kit.objects.filter(id=pk).get()
         kit_serializer = KitSerializer(kit_obj)
-        return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
+        return JsonResponse({"status": "ok", "kit": json.dumps(kit_serializer.data)})
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])

@@ -13,19 +13,14 @@ export async function markdownToHtml(markdown) {
 export default function KitPage() {
   const [kit, setKit] = useState({});
   const { slug } = useParams();
-  console.log(slug);
   const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
-  //const userAPI = "https://kunaikit.herokuapp.com/auth/userdetails/";
-
   useEffect(() => {
-    const getKitById = () => {
-      axios.get(API).then((res1) => {
-        setKit(...res1.data.kit);
-      });
-    };
-    getKitById();
-    console.log(kit);
-  }, []);
+    async function fetchData() {
+      const response = await axios.get(API);
+      setKit(JSON.parse(response.data["kit"]));
+    }
+    fetchData();
+  }, [slug]);
 
   return (
     <div>
@@ -38,7 +33,7 @@ export default function KitPage() {
             <div className="p-2 sm:p-4 bg-white shadow-2xl border-2 border-gray-500">
               <div>
                 <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black title-font">
-                  {kit["title"]}
+                  {String(kit['title'])}
                 </h1>
               </div>
               <div>
