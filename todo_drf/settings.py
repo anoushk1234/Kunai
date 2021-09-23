@@ -65,6 +65,7 @@ SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,7 +83,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'api.apps.ApiConfig',
     'django.contrib.sites',
-    'corsheaders',
     'rest_framework',
 
 ]
@@ -94,11 +94,11 @@ else:
 # 6 for production, 4 for local
 # use the .env file to check if SETTINGS_MODE is dev, if it is set SITE_ID to 6 else 4
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
