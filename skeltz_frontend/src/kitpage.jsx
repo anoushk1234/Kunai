@@ -3,13 +3,13 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { remark } from "remark";
-import html from "remark-html";
-export async function markdownToHtml(markdown) {
-  const result = await remark().use(html).process(markdown);
-  console.log(result.toString());
-  return result.toString();
-}
+// import { remark } from "remark";
+// import html from "remark-html";
+// export async function markdownToHtml(markdown) {
+//   const result = await remark().use(html).process(markdown);
+//   console.log(result.toString());
+//   return result.toString();
+// }
 export default function KitPage() {
   const [kit, setKit] = useState({});
   const { slug } = useParams();
@@ -33,31 +33,30 @@ export default function KitPage() {
             <div className="p-2 sm:p-4 bg-white shadow-2xl border-2 border-gray-500">
               <div>
                 <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black title-font">
-                  {String(kit['title'])}
+                  {kit["title"] ? kit["title"] : "Loading"}
                 </h1>
               </div>
               <div>
                 <p className="py-2 text-base leading-relaxed text-gray-700">
-                  {/* <ReactMarkdown>
-                    {JSON.parse(kit)["markdown_data"].substring(0, 210) +
-                      "..."}
-                  </ReactMarkdown> */}
+                  <ReactMarkdown>
+                    {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
+                  </ReactMarkdown>
                 </p>
               </div>
               <div className="flex justify-between">
                 <div className="flex flew-row gap-4">
                   <div class="relative w-12 h-12">
-                    {/* <img
+                    <img
                       className="rounded-full border border-gray-100 shadow-sm"
-                      src={JSON.parse(kit)["profile_image"]}
+                      src={kit["profile_image"]}
                       alt="User Avatar"
                       width={32}
                       height={32}
-                    /> */}
+                    />
                   </div>
                   <div>
                     <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700">
-                      {/* {JSON.parse(kit)["user"]} */}
+                      {kit["user"]}
                     </h1>
                   </div>
                 </div>
