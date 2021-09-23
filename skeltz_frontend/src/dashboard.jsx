@@ -95,7 +95,7 @@ export default function Dashboard() {
             </div>
           </div>
           {data.map((item, index) => {
-            console.log(JSON.parse(item)["user_image"]);
+            //console.log(JSON.parse(item)["user_image"]);
             return (
               <div className="mx-4 w-full sm:w-9/12">
                 <div className="p-2 my-6 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">

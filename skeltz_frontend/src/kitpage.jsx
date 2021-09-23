@@ -1,8 +1,32 @@
 import { useParams } from "react-router-dom";
-import NavbarPrivate from "./components/NavbarPrivate"
+import NavbarPrivate from "./components/NavbarPrivate";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { remark } from "remark";
+import html from "remark-html";
+export async function markdownToHtml(markdown) {
+  const result = await remark().use(html).process(markdown);
+  console.log(result.toString());
+  return result.toString();
+}
 export default function KitPage() {
-  const { kitId } = useParams();
-  console.log(kitId);
+  const [kit, setKit] = useState({});
+  const { slug } = useParams();
+  console.log(slug);
+  const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
+  //const userAPI = "https://kunaikit.herokuapp.com/auth/userdetails/";
+
+  useEffect(() => {
+    const getKitById = () => {
+      axios.get(API).then((res1) => {
+        setKit(...res1.data.kit);
+      });
+    };
+    getKitById();
+    console.log(kit);
+  }, []);
+
   return (
     <div>
       <header>
@@ -14,46 +38,31 @@ export default function KitPage() {
             <div className="p-2 sm:p-4 bg-white shadow-2xl border-2 border-gray-500">
               <div>
                 <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black title-font">
-                  Title
+                  {kit["title"]}
                 </h1>
               </div>
               <div>
                 <p className="py-2 text-base leading-relaxed text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer posuere fringilla lacinia. Praesent placerat semper
-                  tempus. Nam non felis mi. Nunc est sapien, malesuada ut sem a,
-                  dignissim ultrices purus. Maecenas id vestibulum felis, a
-                  pellentesque ante. Morbi vel venenatis sem. Sed elit diam,
-                  pharetra nec massa posuere, egestas ultrices augue. Etiam
-                  rhoncus aliquet tellus in viverra. Phasellus gravida sed nibh
-                  et vehicula. Integer dignissim nibh vel sapien posuere
-                  vulputate. Nulla non scelerisque lorem. Cras elementum elit
-                  sed lobortis viverra. Quisque volutpat purus arcu, ut
-                  convallis ex lobortis eu. Donec hendrerit ex sollicitudin eros
-                  tincidunt faucibus. Cras erat odio, auctor quis aliquet id,
-                  pulvinar vel magna.
-                  <br></br>
-                  Donec gravida rhoncus odio quis mollis. Maecenas non eleifend
-                  eros. Integer vel cursus eros. Sed rutrum sem justo, nec
-                  venenatis massa rutrum nec. Integer in aliquet metus, at
-                  semper diam. Quisque facilisis porta purus id volutpat. Nulla
-                  iaculis dapibus semper.
+                  {/* <ReactMarkdown>
+                    {JSON.parse(kit)["markdown_data"].substring(0, 210) +
+                      "..."}
+                  </ReactMarkdown> */}
                 </p>
               </div>
               <div className="flex justify-between">
                 <div className="flex flew-row gap-4">
                   <div class="relative w-12 h-12">
-                    <img
+                    {/* <img
                       className="rounded-full border border-gray-100 shadow-sm"
-                      src="/imgs/thispersondoesnotexist.jpg"
+                      src={JSON.parse(kit)["profile_image"]}
                       alt="User Avatar"
                       width={32}
                       height={32}
-                    />
+                    /> */}
                   </div>
                   <div>
                     <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700">
-                      Profile Name
+                      {/* {JSON.parse(kit)["user"]} */}
                     </h1>
                   </div>
                 </div>
