@@ -19,13 +19,7 @@ export async function markdownToHtml(markdown) {
 }
 
 export default function Dashboard() {
-  // const [title, setTitle] = useState([]);
-  // const [content, setContent] = useState([""]);
-  // const [username, setUsername] = useState([]);
-  // const [userId, setUserId] = useState([]);
-  // const [userImage, setUserImage] = useState([
-  //   "/images/thispersondoesnotexist.jpg",
-  // ]);
+  const prodURL = "https://kunaikit.herokuapp.com";
   console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
   const [data, setData] = useState([]);
@@ -97,7 +91,12 @@ export default function Dashboard() {
           {data.map((item, index) => {
             //console.log(JSON.parse(item)["user_image"]);
             return (
-              <div className="mx-4 w-full sm:w-9/12">
+              <div
+                className="mx-4 w-full sm:w-9/12"
+                onClick={() => {
+                  window.location.href = prodURL + "/#/kit/" + JSON.parse(item)["id"];
+                }}
+              >
                 <div className="p-2 my-6 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">
                   <div>
                     <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black dark:text-white title-font">
