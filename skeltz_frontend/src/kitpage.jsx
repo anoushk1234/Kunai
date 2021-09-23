@@ -19,9 +19,16 @@ export default function KitPage() {
 
   useEffect(() => {
     const getKitById = () => {
-      axios.get(API).then((res1) => {
-        setKit(...res1.data.kit);
-      });
+      axios
+        .get(API, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res1) => {
+          setKit(...res1.data.kit);
+        });
     };
     getKitById();
     console.log(kit);
