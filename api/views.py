@@ -21,7 +21,30 @@ from django.views.decorators.csrf import csrf_exempt
 @permission_classes([AllowAny])
 def health(request):
     return JsonResponse({"status": "ok", "user": request.user.username})
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_kit_upvotes_and_downvotes(request,kit_id):
+    kit = Kit.objects.get(id=kit_id)
+    upvotes = kit.upvotes
+    downvotes = kit.downvotes
+    return JsonResponse({"upvotes": upvotes, "downvotes": downvotes})
 
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def upvote_this_kit(request, pk):
+    kit = Kit.objects.get(pk=pk)
+    kit.upvotes += 1
+    kit.save()
+    return JsonResponse({"status": "ok", "kit_upvotes": kit.upvotes})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def downvote_this_kit(request, pk):
+    kit = Kit.objects.get(pk=pk)
+    kit.downvotes += 1
+    kit.save()
+    return JsonResponse({"status": "ok", "kit_downvotes": kit.downvotes})
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -145,6 +168,7 @@ def get_kit_list(request):
         l = len(Convert(items))-5
         print(items)
         return JsonResponse({'status': 'ok', 'items': items})
+
 
 
 @api_view(['GET'])
