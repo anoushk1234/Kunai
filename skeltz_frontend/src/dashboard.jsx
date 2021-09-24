@@ -94,7 +94,8 @@ export default function Dashboard() {
               <div
                 className="mx-4 w-full sm:w-9/12"
                 onClick={() => {
-                  window.location.href = prodURL + "/#/kit/" + JSON.parse(item)["id"];
+                  window.location.href =
+                    prodURL + "/#/kit/" + JSON.parse(item)["id"];
                 }}
               >
                 <div className="p-2 my-6 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">

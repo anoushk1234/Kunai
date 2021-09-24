@@ -12,12 +12,20 @@ import ReactMarkdown from "react-markdown";
 // }
 export default function KitPage() {
   const [kit, setKit] = useState({});
+  const [upvotes, setUpvotes] = useState(0);
+  const [downvotes, setDownvotes] = useState(0);
   const { slug } = useParams();
   const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
+  const upvotesAPI = `https://kunaikit.herokuapp.com/api/votes/${slug}`;
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(API);
       setKit(JSON.parse(response.data["kit"]));
+      const upvotes = await axios.get(upvotesAPI);
+      console.log(upvotes.data);
+      setUpvotes(upvotes.data["upvotes"]);
+      setDownvotes(upvotes.data["downvotes"]);
+      console.log(kit);
     }
     fetchData();
   }, [slug]);
@@ -60,7 +68,7 @@ export default function KitPage() {
                     </h1>
                   </div>
                 </div>
-                <div className="flex flex-row">
+                <div className="flex flex-row align-middle">
                   <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -77,6 +85,9 @@ export default function KitPage() {
                       />
                     </svg>
                   </div>
+                  <p className="font-semibold text-black text-xl">
+                    {kit["upvotes"]}
+                  </p>
                   <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
