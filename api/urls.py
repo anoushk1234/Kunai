@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
 path('health/', views.health, name='health'),
 path('votes/<int:kit_id>', views.get_kit_upvotes_and_downvotes, name='votes'),
-path('up/<int:pk>', views.upvote_this_kit, name='up'),
-path('down/<int:pk>', views.downvote_this_kit, name='down'),
+path('up/<int:kit_id>', views.upvote_this_kit, name='up'),
+#path('down/<int:pk>', views.downvote_this_kit, name='down'),
 path('getkit/', views.get_kit_list, name='getkit'),
 path('getkit/<int:pk>/', views.get_kit_by_kit_id, name='getkitbyid'),
 path('getkitcoms/<int:pk>/', views.get_comments_for_kit, name='getkitcoms'),

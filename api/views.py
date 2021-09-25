@@ -23,28 +23,38 @@ def health(request):
     return JsonResponse({"status": "ok", "user": request.user.username})
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_kit_upvotes_and_downvotes(request,kit_id):
+def get_kit_upvotes_and_downvotes(request, kit_id):
     kit = Kit.objects.get(id=kit_id)
-    upvotes = kit.upvotes
-    downvotes = kit.downvotes
-    return JsonResponse({"upvotes": upvotes, "downvotes": downvotes})
+    upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
+    #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
+    return JsonResponse({"upvotes": str(upvotes)})
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def upvote_this_kit(request, pk):
-    kit = Kit.objects.get(pk=pk)
-    kit.upvotes += 1
+def upvote_this_kit(request, kit_id):
+    kit = Kit.objects.get(id=kit_id)
+    user = request.user
+    print()
+    if user in kit.upvotes.all():
+        kit.upvotes.remove(user)
+        print("removed upvote")
+        print(kit.upvotes.all())
+    else:
+        kit.upvotes.add(user)
+        print("added upvote")
+        print(kit.upvotes.all())
     kit.save()
-    return JsonResponse({"status": "ok", "kit_upvotes": kit.upvotes})
+    return JsonResponse({"status": "ok"})
+  
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def downvote_this_kit(request, pk):
-    kit = Kit.objects.get(pk=pk)
-    kit.downvotes += 1
-    kit.save()
-    return JsonResponse({"status": "ok", "kit_downvotes": kit.downvotes})
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def downvote_this_kit(request, pk):
+#     kit = Kit.objects.get(pk=pk)
+#     kit.downvotes -= 1
+#     kit.save()
+#     return JsonResponse({"status": "ok", "kit_downvotes": kit.downvotes})
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

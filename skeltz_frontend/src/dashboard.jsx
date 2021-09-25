@@ -98,14 +98,14 @@ export default function Dashboard() {
                     prodURL + "/#/kit/" + JSON.parse(item)["id"];
                 }}
               >
-                <div className="p-2 my-6 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">
+                <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-2 border-gray-500">
                   <div>
-                    <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black dark:text-white title-font">
+                    <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
                       {JSON.parse(item)["title"]}
                     </h1>
                   </div>
                   <div>
-                    <p className="py-2 text-base leading-relaxed text-gray-700 dark:text-gray-400">
+                    <p className="py-2 text-base leading-relaxed text-gray-700 ">
                       {/*{ReactHtmlParser(
                         JSON.parse(item)["markdown_data"].substring(0, 200)
                       )}*/}
@@ -127,7 +127,7 @@ export default function Dashboard() {
                         />
                       </div>
                       <div>
-                        <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700 dark:text-gray-200">
+                        <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700 ">
                           {JSON.parse(item)["user"]}
                         </h1>
                       </div>
@@ -149,6 +149,9 @@ export default function Dashboard() {
                           />
                         </svg>
                       </div>
+                      <p className="font-semibold text-black text-xl">
+                        {JSON.parse(item)["upvotes"]}
+                      </p>
                       <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
