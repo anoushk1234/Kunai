@@ -133,7 +133,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <div className="flex flex-row">
-                      <div
+                      <button
                       onClick={() => {
                         axios.get(prodURL+'/api/up/'+JSON.parse(item)['id']).then( ()=> {
                           upvoted = !upvoted;
@@ -154,7 +154,7 @@ export default function Dashboard() {
                             d="M5 11l7-7 7 7M5 19l7-7 7 7"
                           />
                         </svg>
-                      </div>
+                      </button>
                       <p className="font-semibold text-black text-xl">
                         {JSON.parse(item)["upvotes"].length}
                       </p>

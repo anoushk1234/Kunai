@@ -71,7 +71,7 @@ export default function KitPage() {
                   </div>
                 </div>
                 <div className="flex flex-row align-middle">
-                  <div
+                  <button
                     onClick={() => {
                       axios.get(prodURL + "/api/up/" + kit["id"]).then(() => {
                         upvoted = !upvoted;
@@ -92,7 +92,7 @@ export default function KitPage() {
                         d="M5 11l7-7 7 7M5 19l7-7 7 7"
                       />
                     </svg>
-                  </div>
+                  </button>
                   <p className="font-semibold text-black text-xl">{upvotes}</p>
                 </div>
               </div>
