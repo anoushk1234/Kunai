@@ -13,7 +13,9 @@ import ReactMarkdown from "react-markdown";
 export default function KitPage() {
   const [kit, setKit] = useState({});
   const [upvotes, setUpvotes] = useState(0);
- // const [downvotes, setDownvotes] = useState(0);
+  let upvoted = false;
+  const prodURL = "https://kunaikit.herokuapp.com";
+  // const [downvotes, setDownvotes] = useState(0);
   const { slug } = useParams();
   const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
   const upvotesAPI = `https://kunaikit.herokuapp.com/api/votes/${slug}`;
@@ -69,7 +71,13 @@ export default function KitPage() {
                   </div>
                 </div>
                 <div className="flex flex-row align-middle">
-                  <div>
+                  <div
+                    onClick={() => {
+                      axios.get(prodURL + "/api/up/" + kit["id"]).then(() => {
+                        upvoted = !upvoted;
+                      });
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="h-6 w-6"
@@ -85,25 +93,7 @@ export default function KitPage() {
                       />
                     </svg>
                   </div>
-                  <p className="font-semibold text-black text-xl">
-                    {upvotes}
-                  </p>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
+                  <p className="font-semibold text-black text-xl">{upvotes}</p>
                 </div>
               </div>
             </div>

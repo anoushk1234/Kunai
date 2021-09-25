@@ -19,6 +19,7 @@ export async function markdownToHtml(markdown) {
 }
 
 export default function Dashboard() {
+  var upvoted = false;
   const prodURL = "https://kunaikit.herokuapp.com";
   console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
@@ -33,7 +34,7 @@ export default function Dashboard() {
     }
 
     getTitle();
-  }, [Dashboard]);
+  }, [Dashboard, upvoted]);
   return (
     <div>
       <header>
@@ -91,20 +92,19 @@ export default function Dashboard() {
           {data.map((item, index) => {
             //console.log(JSON.parse(item)["user_image"]);
             return (
-              <div
-                className="mx-4 w-full sm:w-9/12"
-                onClick={() => {
-                  window.location.href =
-                    prodURL + "/#/kit/" + JSON.parse(item)["id"];
-                }}
-              >
+              <div className="mx-4 w-full sm:w-9/12">
                 <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-2 border-gray-500">
                   <div>
                     <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
                       {JSON.parse(item)["title"]}
                     </h1>
                   </div>
-                  <div>
+                  <div
+                    onClick={() => {
+                      window.location.href =
+                        prodURL + "/#/kit/" + JSON.parse(item)["id"];
+                    }}
+                  >
                     <p className="py-2 text-base leading-relaxed text-gray-700 ">
                       {/*{ReactHtmlParser(
                         JSON.parse(item)["markdown_data"].substring(0, 200)
@@ -133,7 +133,13 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <div className="flex flex-row">
-                      <div>
+                      <div
+                      onClick={() => {
+                        axios.get(prodURL+'/api/up/'+JSON.parse(item)['id']).then( ()=> {
+                          upvoted = !upvoted;
+                        })
+                      }}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"
@@ -152,7 +158,7 @@ export default function Dashboard() {
                       <p className="font-semibold text-black text-xl">
                         {JSON.parse(item)["upvotes"].length}
                       </p>
-                      <div>
+                      {/* <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"
@@ -167,7 +173,7 @@ export default function Dashboard() {
                             d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
                           />
                         </svg>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
