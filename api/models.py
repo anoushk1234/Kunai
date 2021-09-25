@@ -31,7 +31,7 @@ class Kit(models.Model):
         Category, on_delete=models.CASCADE, null=True, default=None)
 
     def __str__(self):
-        return "%s %s %s %s %s %s %s" % (self.user, self.markdown_data, self.title, self.upvotes, self.categories, self.cat_relation)
+        return "%s %s %s %s %s %s" % (self.user, self.markdown_data, self.title, self.upvotes, self.categories, self.cat_relation)
 
 
 class KitComments(models.Model):
