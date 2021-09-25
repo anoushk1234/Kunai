@@ -150,7 +150,7 @@ export default function Dashboard() {
                         </svg>
                       </div>
                       <p className="font-semibold text-black text-xl">
-                        {JSON.parse(item)["upvotes"]}
+                        {JSON.parse(item)["upvotes"].length}
                       </p>
                       <div>
                         <svg

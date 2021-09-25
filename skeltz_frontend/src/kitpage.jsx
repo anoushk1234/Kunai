@@ -21,9 +21,9 @@ export default function KitPage() {
     async function fetchData() {
       const response = await axios.get(API);
       setKit(JSON.parse(response.data["kit"]));
-      const upvotes = await axios.get(upvotesAPI);
-      console.log(upvotes.data);
-      setUpvotes(upvotes.data["upvotes"]);
+      const upv = await axios.get(upvotesAPI);
+      console.log(upv.data);
+      setUpvotes(upv.data["upvotes"]);
       //setDownvotes(upvotes.data["downvotes"]);
       console.log(kit);
     }
@@ -86,7 +86,7 @@ export default function KitPage() {
                     </svg>
                   </div>
                   <p className="font-semibold text-black text-xl">
-                    {kit["upvotes"]}
+                    {upvotes}
                   </p>
                   <div>
                     <svg
