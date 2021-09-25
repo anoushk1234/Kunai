@@ -13,7 +13,7 @@ import ReactMarkdown from "react-markdown";
 export default function KitPage() {
   const [kit, setKit] = useState({});
   const [upvotes, setUpvotes] = useState(0);
-  const [downvotes, setDownvotes] = useState(0);
+ // const [downvotes, setDownvotes] = useState(0);
   const { slug } = useParams();
   const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
   const upvotesAPI = `https://kunaikit.herokuapp.com/api/votes/${slug}`;
@@ -24,7 +24,7 @@ export default function KitPage() {
       const upvotes = await axios.get(upvotesAPI);
       console.log(upvotes.data);
       setUpvotes(upvotes.data["upvotes"]);
-      setDownvotes(upvotes.data["downvotes"]);
+      //setDownvotes(upvotes.data["downvotes"]);
       console.log(kit);
     }
     fetchData();
