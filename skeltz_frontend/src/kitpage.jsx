@@ -13,7 +13,7 @@ import ReactMarkdown from "react-markdown";
 export default function KitPage() {
   const [kit, setKit] = useState({});
   const [upvotes, setUpvotes] = useState(0);
-  let upvoted = 0;
+  const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
   // const [downvotes, setDownvotes] = useState(0);
   const { slug } = useParams();
@@ -74,7 +74,7 @@ export default function KitPage() {
                   <button
                     onClick={() => {
                       axios.get(prodURL + "/api/up/" + kit["id"]).then(() => {
-                        upvoted += 1;
+                        setUpvoted(!upvoted);
                       });
                     }}
                   >

@@ -19,7 +19,7 @@ export async function markdownToHtml(markdown) {
 }
 
 export default function Dashboard() {
-  var upvoted = false;
+  const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
   console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
@@ -134,11 +134,13 @@ export default function Dashboard() {
                     </div>
                     <div className="flex flex-row">
                       <button
-                      onClick={() => {
-                        axios.get(prodURL+'/api/up/'+JSON.parse(item)['id']).then( ()=> {
-                          upvoted = !upvoted;
-                        })
-                      }}
+                        onClick={() => {
+                          axios
+                            .get(prodURL + "/api/up/" + JSON.parse(item)["id"])
+                            .then(() => {
+                              setUpvoted(!upvoted);
+                            });
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
