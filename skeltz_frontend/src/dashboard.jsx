@@ -37,12 +37,10 @@ export default function Dashboard() {
   }, [Dashboard, upvoted]);
   return (
     <div>
-      <header>
-        <NavbarPrivate />
-      </header>
+      
       <body>
-        <div className="my-4 flex flex-row justify-center">
-          <div>
+        <div className="my-4 flex flex-col justify-evenly">
+          {/* <div>
             <div className="px-4 py-6">
               <h3 className="my-1 flow-root">
                 <button
@@ -88,7 +86,7 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {data.map((item, index) => {
             //console.log(JSON.parse(item)["user_image"]);
             return (

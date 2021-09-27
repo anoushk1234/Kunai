@@ -1,14 +1,16 @@
 import logo from "./logo.svg";
 import NavbarPublic from "./components/NavbarPublic";
 import SignIn from "./signin";
-
+import Dashboard from "./dashboard";
 function App() {
   return (
     <div>
-      <div className="mx-4 sm:mx-auto sm:max-w-5xl">
+      <header className="mx-4 sm:mx-auto sm:max-w-5xl">
         <NavbarPublic />
-        
-      </div>
+      </header>
+      <body>
+        <Dashboard />
+      </body>
     </div>
   );
 }

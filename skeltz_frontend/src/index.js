@@ -10,6 +10,7 @@ import Dashboard from "./dashboard";
 import Create from "./create";
 import Account from "./account";
 import KitPage from './kitpage';
+import PrivateDashboard from "./privatedashboard";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,7 @@ ReactDOM.render(
         {/* <ThemeProvider theme={{}}> */}
         <Route exact path="/" component={App} />
         <Route path="/signin" component={SignIn} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={PrivateDashboard} />
         <Route path="/create" component={Create} />
         <Route path="/account" component={Account} />
         <Route path="/kit/:slug" component={KitPage} />

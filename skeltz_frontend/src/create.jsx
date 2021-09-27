@@ -47,7 +47,7 @@ function Create() {
         })
         .then((res1) => console.log(res1))
         .then(() => {
-          window.location.href = prodURL + "/#/dashboard";
+          window.location.href = prodURL + "#/dashboard";
         });
     }
   };
