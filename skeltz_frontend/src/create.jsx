@@ -39,7 +39,7 @@ function Create() {
         .post(API, postData, {
           headers: {
             "X-CSRFTOKEN":
-              "dKNbCqW4HWHF1ow2I3ymfsxvYN6TOaNCbH2rhlFMgMOtrmbpDcDAonH2B3d5kB4n",
+              "iq5Meqm2tVbJKlHlbkLn3hRX6PgKgEQuSWlQbmGcpXhoNPREuuGdtoAb041NExUi",
           },
         })
         .then((res1) => console.log(res1));
