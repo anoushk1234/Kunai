@@ -109,6 +109,16 @@ def get_user(id_):
     except User.DoesNotExist:
         return None
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_kits(request, search_term):
+    kits = Kit.objects.filter(title__icontains=search_term)
+    serializer = KitSerializer(kits, many=True)
+    if serializer.data:
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return JsonResponse({'status': 'ok', 'comment': 'No comment'})
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

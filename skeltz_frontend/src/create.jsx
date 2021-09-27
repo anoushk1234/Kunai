@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import NavbarPrivate from "./components/NavbarPrivate";
-import MarkdownPreview from "@uiw/react-markdown-preview";
 import { MarkdownEditor } from "rendition/dist/extra/MarkdownEditor";
 import { Markdown } from "rendition/dist/extra/Markdown";
 import { Provider } from "rendition";
+import Cookies from "js-cookie";
 //import cookies from "next-cookies";
 function Create() {
   const [title, setTitle] = useState("");
@@ -39,7 +39,11 @@ function Create() {
       };
 
       axios
-        .post(API, postData)
+        .post(API, postData, {
+          headers: {
+            "X-CSRFToken": Cookies.get("csrftoken"),
+          }
+        })
         .then((res1) => console.log(res1));
     }
   };
