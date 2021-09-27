@@ -1,12 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 import NavbarPrivate from "./components/NavbarPrivate";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 //import cookies from "next-cookies";
 function Create() {
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState(`
+  ## Create your kit here in markdown
+  `);
   const [category, setCategory] = useState("");
   const [username, setUsername] = useState("");
+  const [previewtoggle, setPreviewtoggle] = useState(false);
   const API = "https://kunaikit.herokuapp.com/api/addkit/";
   const userAPI = "https://kunaikit.herokuapp.com/auth/userdetails/";
   // const allCookies = cookies();
@@ -34,39 +38,63 @@ function Create() {
       axios
         .post(API, postData, {
           headers: {
-            "X-CSRFTOKEN": "iq5Meqm2tVbJKlHlbkLn3hRX6PgKgEQuSWlQbmGcpXhoNPREuuGdtoAb041NExUi",
+            "X-CSRFTOKEN":
+              "iq5Meqm2tVbJKlHlbkLn3hRX6PgKgEQuSWlQbmGcpXhoNPREuuGdtoAb041NExUi",
           },
         })
         .then((res1) => console.log(res1));
     }
   };
 
+  const source = `
+## MarkdownPreview
+
+> todo: React component preview markdown text.
+`;
   return (
     <div>
       <NavbarPrivate />
-      <div className="my-4 flex justify-center flex-col">
-        <input
-          type="text"
-          className="my-2"
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          type="text"
-          className="my-2"
-          placeholder="Body"
-          onChange={(e) => setBody(e.target.value)}
-        />
-        <select
-          name="categories"
-          id="category"
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option>Select a category</option>
-          <option value="Web Dev">Web Dev</option>
-          <option value="DIY">DIY</option>
-        </select>
-        <button onClick={addKit}>Submit</button>
+      <div className="flex flex-row justify-center">
+        <div className="my-4 mx-4 max-w-4xl min-h-screen flex flex-1 flex-col p-10 border-solid border-black border-4 rounded-md">
+          <input
+            type="text"
+            className="my-2 border-solid border-black border-4 rounded-md"
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          {previewtoggle ? (
+            <MarkdownPreview source={body} />
+          ) : (
+            <textarea
+              type="text"
+              className="my-2 border-solid border-black border-4 rounded-md"
+              placeholder="Make your kit"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+            />
+          )}
+          <span className="flex-row justify-between">
+            <select
+              name="categories"
+              id="category"
+              onChange={(e) => setCategory(e.target.value)}
+              className="my-2 max-w-xs border-solid border-black border-4 rounded-md"
+            >
+              <option>Select a category</option>
+              <option value="Web Dev">Web Dev</option>
+              <option value="DIY">DIY</option>
+            </select>
+            <button onClick={() => setPreviewtoggle(!previewtoggle)}>
+              Preview
+            </button>
+            <button
+              className="my-2 mx-2 p-2 max-w-md bg-black rounded-lg text-white"
+              onClick={addKit}
+            >
+              Submit
+            </button>
+          </span>
+        </div>
       </div>
     </div>
   );

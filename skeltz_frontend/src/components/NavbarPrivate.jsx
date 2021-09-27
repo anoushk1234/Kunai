@@ -6,11 +6,11 @@ export default function NavbarPublic() {
     return (
       <div className="mt-6 mb-6">
         <div className="flex justify-between">
-          <div>
+          <div className="mx-3">
             <Link to="/dashboard">
               <a>
                 <h1 className="font-bold tracking-tighter text-black dark:text-white text-5xl title-font">
-                  Kunai
+                  Skeltz
                 </h1>
               </a>
             </Link>

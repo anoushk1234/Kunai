@@ -10,7 +10,7 @@ export default function NavbarPublic() {
                     <Link to="/">
                         <a>
                             <h1 className="font-bold tracking-tighter text-black  dark:text-white text-5xl title-font">
-                                Kunai
+                                Skeltz
                             </h1>
                         </a>
                     </Link>

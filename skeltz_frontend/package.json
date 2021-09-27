@@ -7,9 +7,12 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@uiw/react-markdown-preview": "^3.3.3",
     "add": "^2.0.6",
+    "arch-editor": "^1.0.1-beta.19",
     "axios": "^0.21.4",
     "dotenv": "^10.0.0",
+    "draft-js": "^0.11.7",
     "express": "^4.17.1",
     "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^2.0.1",
@@ -22,6 +25,8 @@
     "react-scripts": "4.0.3",
     "remark": "^14.0.1",
     "remark-html": "^14.0.1",
+    "slate": "^0.66.2",
+    "slate-react": "^0.66.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
