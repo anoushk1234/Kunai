@@ -25,6 +25,7 @@
     "react-scripts": "4.0.3",
     "remark": "^14.0.1",
     "remark-html": "^14.0.1",
+    "rendition": "^21.7.7",
     "slate": "^0.66.2",
     "slate-react": "^0.66.2",
     "web-vitals": "^1.0.1"

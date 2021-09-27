@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import NavbarPrivate from "./components/NavbarPrivate";
 import MarkdownPreview from "@uiw/react-markdown-preview";
+import { MarkdownEditor } from "rendition/dist/extra/MarkdownEditor";
+import { Markdown } from "rendition/dist/extra/Markdown";
+import { Provider } from "rendition";
 //import cookies from "next-cookies";
 function Create() {
   const [title, setTitle] = useState("");
@@ -63,15 +66,18 @@ function Create() {
             onChange={(e) => setTitle(e.target.value)}
           />
           {previewtoggle ? (
-            <MarkdownPreview source={body} />
+            <Provider>
+              <Markdown children={body} />
+            </Provider>
           ) : (
-            <textarea
-              type="text"
-              className="my-2 border-solid border-black border-4 rounded-md"
-              placeholder="Make your kit"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
+            <Provider>
+              <MarkdownEditor
+                className="my-2 border-solid border-black border-4 rounded-md"
+                placeholder="Make your kit"
+                value={body}
+                onChange={setBody}
+              />
+            </Provider>
           )}
           <span className="flex-row justify-between">
             <select
