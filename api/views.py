@@ -143,7 +143,7 @@ def add_kit(request):
             categories = request.data['categories']
             cat_id = request.data['cat_id']
             kit_serializer = KitSerializer(data={'user': screen_name, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
-                                                 'upvotes': list(User.objects.get(username=screen_name)), 'categories': categories, 'cat_relation': cat_id})
+                                                 'upvotes': [User.objects.get(username=screen_name)], 'categories': categories, 'cat_id': cat_id})
         except Exception as e:
             print(e)
             return JsonResponse({'status': 'error', 'message': 'Invalid data', 'error': str(e)})

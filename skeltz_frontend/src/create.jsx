@@ -15,6 +15,7 @@ function Create() {
   const [username, setUsername] = useState("");
   const [previewtoggle, setPreviewtoggle] = useState(false);
   const API = "https://kunaikit.herokuapp.com/api/addkit/";
+  const prodURL = "https://kunaikit.herokuapp.com/";
   const userAPI = "https://kunaikit.herokuapp.com/auth/userdetails/";
   // const allCookies = cookies();
   // console.log(allCookies);
@@ -42,9 +43,12 @@ function Create() {
         .post(API, postData, {
           headers: {
             "X-CSRFToken": Cookies.get("csrftoken"),
-          }
+          },
         })
-        .then((res1) => console.log(res1));
+        .then((res1) => console.log(res1))
+        .then(() => {
+          window.location.href = prodURL + "/#/dashboard";
+        });
     }
   };
 
