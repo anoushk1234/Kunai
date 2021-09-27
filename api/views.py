@@ -3,6 +3,7 @@ import api
 import re
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import  csrf_exempt
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -13,7 +14,7 @@ from allauth.socialaccount.models import SocialAccount, SocialToken
 from .models import *
 import json
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 # Create your views here.
 
 
@@ -111,7 +112,7 @@ def get_user(id_):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@method_decorator(csrf_exempt, name='dispatch')
+@csrf_exempt
 def add_kit(request):
     '''
     user,title,markdown_data,upvotes,downvotes,Categories,cat_id
