@@ -39,12 +39,7 @@ function Create() {
       };
 
       axios
-        .post(API, postData, {
-          headers: {
-            "X-CSRFTOKEN":
-              "dKNbCqW4HWHF1ow2I3ymfsxvYN6TOaNCbH2rhlFMgMOtrmbpDcDAonH2B3d5kB4n",
-          },
-        })
+        .post(API, postData)
         .then((res1) => console.log(res1));
     }
   };
