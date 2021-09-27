@@ -40,7 +40,7 @@ export default function KitPage() {
       <body>
         <div className="my-4 flex justify-center">
           <div className="mx-4 w-full sm:w-9/12">
-            <div className="p-2 sm:p-4 bg-white shadow-2xl border-2 border-gray-500">
+            <div className="p-2 sm:p-4 bg-white shadow-2xl border-4 border-black rounded-md">
               <div>
                 <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black title-font">
                   {kit["title"] ? kit["title"] : "Loading"}
