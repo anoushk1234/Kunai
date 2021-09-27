@@ -39,9 +39,9 @@ export default function Dashboard() {
     <div>
       
       <body>
-        <div className="my-4 flex flex-col justify-evenly">
-          {/* <div>
-            <div className="px-4 py-6">
+        <div className="my-4 flex flex-row justify-between  border-4 border-white">
+          <div>
+            <div className="px-4 py-6 flex flex-col border-4 border-white">
               <h3 className="my-1 flow-root">
                 <button
                   type="button"
@@ -86,12 +86,13 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
+          <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
           {data.map((item, index) => {
             //console.log(JSON.parse(item)["user_image"]);
             return (
               <div className="mx-4 w-full sm:w-9/12">
-                <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-2 border-gray-500">
+                <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-4 border-black rounded-md">
                   <div>
                     <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
                       {JSON.parse(item)["title"]}
@@ -180,6 +181,7 @@ export default function Dashboard() {
               </div>
             );
           })}
+          </div>
         </div>
       </body>
     </div>
