@@ -45,9 +45,11 @@ function Create() {
             "X-CSRFToken": Cookies.get("csrftoken"),
           },
         })
-        .then((res1) => console.log(res1))
-        .then(() => {
-          window.location.href = prodURL + "#/dashboard";
+        .then((res1) => {
+          window.location.href = `${prodURL}#/kit/${res1.data.kit.id}`;
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
