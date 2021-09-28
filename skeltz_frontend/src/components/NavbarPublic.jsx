@@ -25,7 +25,7 @@ export default function NavbarPublic() {
                         <div>
                             <Link to="/signin">
                                 <a>
-                                    <button className="flex items-center px-6 py-2 font-semibold text-black dark:text-white transition duration-500 ease-in-out transform hover:bg-gray-200 dark:hover:bg-gray-700 border-2 dark:border-gray-500 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> 
+                                    <button className="flex items-center px-6 py-2 font-semibold text-black dark:text-white transition duration-500 ease-in-out transform hover:bg-gray-200 dark:hover:bg-gray-700 border-3 dark:border-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> 
                                         Sign In 
                                     </button>
                                 </a>

@@ -240,8 +240,10 @@ def get_user_kits(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_user(request, username):
+def get_twitter_user(request):
+    """
+    List all the kits.
+    """
     if request.method == 'GET':
-        user = User.objects.get(username=username)
-        serializer = UserSerializer(user)
-        return JsonResponse(serializer.data)
+        user_obj = SocialAccount.objects.get(user_id=request.user.id).extra_data
+        return JsonResponse(user_obj, safe=False)

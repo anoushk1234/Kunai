@@ -41,7 +41,7 @@ export default function Dashboard() {
       <body>
         <div className="my-4 flex flex-row justify-between  border-4 border-white">
           <div>
-            <div className="px-4 py-6 flex flex-col border-4 border-white">
+            <div className="px-4 py-6 flex flex-col justify-evenly border-4 border-white">
               <h3 className="my-1 flow-root">
                 <button
                   type="button"
@@ -65,7 +65,7 @@ export default function Dashboard() {
                     htmlFor="filter-mobile-category-0"
                     className="ml-3 min-w-0 flex-1 text-gray-500"
                   >
-                    Science
+                    Web Dev🕸
                   </label>
                 </div>
 
@@ -81,7 +81,98 @@ export default function Dashboard() {
                     htmlFor="filter-mobile-category-4"
                     className="ml-3 min-w-0 flex-1 text-gray-500"
                   >
-                    DIYs
+                    Data Science📊
+                  </label>
+                  
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Graphic Design🎨
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Digital Marketing📈
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Writing📝
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Web 3 🌐
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Bootstrapping🔨
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="filter-mobile-category-4"
+                    name="category[]"
+                    value="diys"
+                    type="checkbox"
+                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                  ></input>
+                  <label
+                    htmlFor="filter-mobile-category-4"
+                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                  >
+                    Startups🦄
                   </label>
                 </div>
               </div>

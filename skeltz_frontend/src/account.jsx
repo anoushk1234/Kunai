@@ -2,6 +2,8 @@ import React from "react";
 import NavbarPrivate from "./components/NavbarPrivate";
 
 export default function Account() {
+
+  
   return (
     <div>
       <div>
