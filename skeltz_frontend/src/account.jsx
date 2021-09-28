@@ -2,6 +2,11 @@ import React from "react";
 import NavbarPrivate from "./components/NavbarPrivate";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+export function remove_normal(url) {
+  return url.replace("_normal", "");
+}
+
 export default function Account() {
   const [twitterprofile, setTwitterprofile] = useState({});
   const userAPI = "https://kunaikit.herokuapp.com/api/getuser/";
@@ -19,10 +24,10 @@ export default function Account() {
       <div class="flex items-center h-screen w-full text-center justify-center">
         <div class="w-5/12">
           <div className="p-2 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">
-            <div class="photo-wrapper p-2 text-center">
+            <div class="photo-wrapper flex justify-center p-2 text-center">
               <img
                 className="rounded-full border border-gray-100 shadow-sm"
-                src={twitterprofile["profile_image_url_https"]}
+                src={remove_normal(twitterprofile["profile_image_url_https"])}
                 alt="User Avatar"
                 width={128}
                 height={128}
@@ -44,9 +49,7 @@ export default function Account() {
                     <td class="px-2 py-2">{twitterprofile["screen_name"]}</td>
                   </tr>
                   <tr>
-                    <td class="px-2 py-2">{
-                      twitterprofile["url"]
-                    }</td>
+                    <td class="px-2 py-2">{"@" + twitterprofile["url"]}</td>
                   </tr>
                 </tbody>
               </table>
