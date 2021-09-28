@@ -27,7 +27,7 @@ export default function Account() {
               <img
                 className="rounded-full border border-gray-100 shadow-sm"
                 src={() => {
-                  remove_normal(twitterprofile["profile_image_url"]);
+                  remove_normal(twitterprofile["profile_image_url_https"]);
                 }}
                 alt="User Avatar"
                 width={128}
@@ -47,10 +47,10 @@ export default function Account() {
                     {/* <td class="px-2 py-2 text-gray-500 font-semibold">
                       Address
                     </td> */}
-                    <td class="px-2 py-2">{twitterprofile["screen_name"]}</td>
+                    <td class="px-2 py-2">{"@" + twitterprofile["screen_name"]}</td>
                   </tr>
                   <tr>
-                    <td class="px-2 py-2">{"@" + twitterprofile["url"]}</td>
+                    <td class="px-2 py-2"><a href={twitterprofile["url"]}>link</a></td>
                   </tr>
                 </tbody>
               </table>
