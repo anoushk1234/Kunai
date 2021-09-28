@@ -3,13 +3,12 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function remove_normal(url) {
-  return url.replace("_normal", "");
-}
-
 export default function Account() {
   const [twitterprofile, setTwitterprofile] = useState({});
   const userAPI = "https://kunaikit.herokuapp.com/api/getuser/";
+  function remove_normal(url) {
+    return url.replace("_normal", "");
+  }
   useEffect(() => {
     axios.get(userAPI).then((res) => {
       setTwitterprofile(res.data);
