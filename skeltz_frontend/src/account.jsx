@@ -20,7 +20,7 @@ export default function Account() {
         <div class="w-5/12">
           <div className="p-2 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">
             <div class="photo-wrapper p-2 text-center">
-              <div
+              <img
                 className="rounded-full border border-gray-100 shadow-sm"
                 src={twitterprofile["profile_image_url_https"]}
                 alt="User Avatar"
