@@ -46,7 +46,7 @@ function Create() {
           },
         })
         .then((res1) => {
-          window.location.href = `${prodURL}#/kit/${res1.data.kit.id}`;
+          window.location.href = `${prodURL}#/kit/${JSON.parse(res1.data).kit.id}`;
         })
         .catch((error) => {
           console.log(error);
