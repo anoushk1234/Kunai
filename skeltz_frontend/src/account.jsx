@@ -27,7 +27,7 @@ export default function Account() {
             <div class="photo-wrapper flex justify-center p-2 text-center">
               <img
                 className="rounded-full border border-gray-100 shadow-sm"
-                src={remove_normal(twitterprofile["profile_image_url_https"])}
+                src={remove_normal(twitterprofile["profile_image_url"])}
                 alt="User Avatar"
                 width={128}
                 height={128}
