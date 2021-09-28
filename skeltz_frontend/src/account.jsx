@@ -7,7 +7,7 @@ export default function Account() {
   const userAPI = "https://kunaikit.herokuapp.com/api/getuser/";
   useEffect(() => {
     axios.get(userAPI).then((res) => {
-      setTwitterprofile(JSON.parse(res.data));
+      setTwitterprofile(res.data);
     });
   }, []);
 
