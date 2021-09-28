@@ -149,9 +149,9 @@ def add_kit(request):
             return JsonResponse({'status': 'error', 'message': 'Invalid data', 'error': str(e)})
         if kit_serializer.is_valid():
             kit_serializer.save()
-            return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
+            return JsonResponse({'status': 'ok', 'kit': json.dumps(kit_serializer.data)})
         else:
-            return JsonResponse({'status': 'error', 'errors': str(kit_serializer.errors)})
+            return JsonResponse({'status': 'error', 'errors': json.dumps(kit_serializer.errors)})
 
 
 @api_view(['POST'])

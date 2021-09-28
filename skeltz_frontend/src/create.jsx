@@ -46,8 +46,10 @@ function Create() {
           },
         })
         .then((res1) => {
-          console.log(JSON.parse(res1.data.kit).id);
-          const id_num = JSON.parse(res1.data.kit).id;
+          console.log(res1);
+          console.log(JSON.parse(res1['data']['kit'])['id']);
+          console.log(res1.data['kit']['id']);
+          const id_num = JSON.parse(res1.data['kit'])['id'];
           window.location.href = `${prodURL}#/kit/${id_num}`;
         })
         .catch((error) => {
