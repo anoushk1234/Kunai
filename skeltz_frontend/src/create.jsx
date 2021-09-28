@@ -46,7 +46,9 @@ function Create() {
           },
         })
         .then((res1) => {
-          window.location.href = `${prodURL}#/kit/${JSON.parse(res1.data.kit).id}`;
+          console.log(JSON.parse(res1.data.kit).id);
+          const id_num = JSON.parse(res1.data.kit).id;
+          window.location.href = `${prodURL}#/kit/${id_num}`;
         })
         .catch((error) => {
           console.log(error);
