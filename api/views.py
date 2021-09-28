@@ -3,7 +3,7 @@ import api
 import re
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.decorators.csrf import  csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -22,6 +22,8 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 @permission_classes([AllowAny])
 def health(request):
     return JsonResponse({"status": "ok", "user": request.user.username})
+
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_upvotes_and_downvotes(request, kit_id):
@@ -47,7 +49,7 @@ def upvote_this_kit(request, kit_id):
         print(kit.upvotes.all())
     kit.save()
     return JsonResponse({"status": "ok"})
-  
+
 
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
@@ -101,13 +103,6 @@ def get_comments_for_kit(request, pk):
     else:
         return JsonResponse({'status': 'ok', 'comment': 'No comment'})
 
-
-@staticmethod
-def get_user(id_):
-    try:
-        return User.objects.get(pk=id_)
-    except User.DoesNotExist:
-        return None
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -191,7 +186,6 @@ def get_kit_list(request):
         return JsonResponse({'status': 'ok', 'items': items})
 
 
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_by_kit_id(request, pk):
@@ -245,5 +239,6 @@ def get_twitter_user(request):
     List all the kits.
     """
     if request.method == 'GET':
-        user_obj = SocialAccount.objects.get(user_id=request.user.id).extra_data
+        user_obj = SocialAccount.objects.get(
+            user_id=request.user.id).extra_data
         return JsonResponse(user_obj, safe=False)
