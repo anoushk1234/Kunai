@@ -3,6 +3,7 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import ItsConfetti from "./components/itsconfetti";
 // import { remark } from "remark";
 // import html from "remark-html";
 // export async function markdownToHtml(markdown) {
@@ -12,6 +13,11 @@ import ReactMarkdown from "react-markdown";
 // }
 export default function KitPage() {
   const [kit, setKit] = useState({});
+  const [playConfetti, setPlayConfetti] = useState(false);
+  //play confetti the first time the user makes a kit
+  useEffect(() => {
+    setPlayConfetti(true);
+  }, []);
   const [upvotes, setUpvotes] = useState(0);
   const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
@@ -30,7 +36,7 @@ export default function KitPage() {
       console.log(kit);
     }
     fetchData();
-  }, [slug,upvoted]);
+  }, [slug, upvoted]);
 
   return (
     <div>
@@ -38,6 +44,7 @@ export default function KitPage() {
         <NavbarPrivate />
       </header>
       <body>
+        {playConfetti && <ItsConfetti playConfetti={playConfetti} />}
         <div className="my-4 flex justify-center">
           <div className="mx-4 w-full sm:w-9/12">
             <div className="p-2 sm:p-4 bg-white shadow-2xl border-4 border-black rounded-md">
