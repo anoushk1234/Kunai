@@ -1949,6 +1949,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/canvas-confetti@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/canvas-confetti/-/canvas-confetti-1.4.0.tgz#22127a1a9ed9d456e626d6e2b9a4d3b0a240e18b"
+  integrity sha512-Neq4mvVecrHmTdyo98EY5bnKCjkZGQ6Ma7VyOrxIcMHEZPmt4kfquccqfBMrpNrdryMHgk3oGQi7XtpZacltnw==
+
 "@types/codemirror@0.0.109":
   version "0.0.109"
   resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.109.tgz#89d575ff1c7b462c4c3b8654f8bb38e5622e9036"
@@ -3670,6 +3675,11 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001191.tgz#bacb432b6701f690c8c5f7c680166b9a9f0843d9"
   integrity sha512-xJJqzyd+7GCJXkcoBiQ1GuxEiOBCLQ0aVW9HMekifZsAVGdj5eJ4mFB9fEhSHipq9IOk/QXFJUiIr9lZT+EsGw==
 
+canvas-confetti@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/canvas-confetti/-/canvas-confetti-1.4.0.tgz#840f6db4a566f8f32abe28c00dcd82acf39c92bd"
+  integrity sha512-S18o4Y9PqI/uabdlT/jI3MY7XBJjNxnfapFIkjkMwpz6qNxLFZOm2b22OMf4ZYDL9lpNWI+Ih4fEMVPwO1KHFQ==
+
 capture-exit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/capture-exit/-/capture-exit-2.0.0.tgz#fb953bfaebeb781f62898239dabb426d08a509a4"
@@ -3874,7 +3884,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.3.1:
+classnames@^2.2.5, classnames@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
@@ -5197,7 +5207,7 @@ date-fns@^2.24.0:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.24.0.tgz#7d86dc0d93c87b76b63d213b4413337cfd1c105d"
   integrity sha512-6ujwvwgPID6zbI0o7UbURi2vlLDR9uP26+tW6Lg+Ji3w7dd0i3DOcjcClLjLPranT60SSEFBwdSyYwn/ZkPIuw==
 
-debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
+debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -8779,6 +8789,13 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsonp@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.1.tgz#a65b4fa0f10bda719a05441ea7b94c55f3e15bae"
+  integrity sha1-pltPoPEL2nGaBUQep7lMVfPhW64=
+  dependencies:
+    debug "^2.1.3"
+
 jsonpath-plus@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/jsonpath-plus/-/jsonpath-plus-5.1.0.tgz#2fc4b2e461950626c98525425a3a3518b85af6c3"
@@ -11713,6 +11730,14 @@ react-async-script@^1.1.1:
     hoist-non-react-statics "^3.3.0"
     prop-types "^15.5.0"
 
+react-canvas-confetti@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-canvas-confetti/-/react-canvas-confetti-1.2.1.tgz#22ac64cbc478cf57cb5f61c130322e359b35389d"
+  integrity sha512-onNjQNkhQjrB2JVCeRpJW7o8VlBNJvo3Eht9zlQlofNLVvvOd1+PzBLU5Ev8n5sFBkTbKJmIUVG0eZnkAl5cpg==
+  dependencies:
+    "@types/canvas-confetti" "1.4.0"
+    canvas-confetti "1.4.0"
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"
@@ -11965,6 +11990,14 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-share@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-share/-/react-share-4.4.0.tgz#cabbf2111d7a907a888ab4d89d08410329efd5ee"
+  integrity sha512-POe8Ge/JT9Ew9iyW7CiYsCCWCb8uMJWqFl9S7W0fJ/oH5gBJNzukH0bL5vSr17KKG5h15d3GfKaoviI22BKeYA==
+  dependencies:
+    classnames "^2.2.5"
+    jsonp "^0.2.1"
 
 react-side-effect@^2.1.0:
   version "2.1.1"
