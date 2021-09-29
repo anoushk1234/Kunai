@@ -20,6 +20,7 @@ export async function markdownToHtml(markdown) {
 
 export default function Dashboard() {
   const [upvoted, setUpvoted] = useState(false);
+  const [category, setCategory] = useState([]);
   const prodURL = "https://kunaikit.herokuapp.com";
   console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
@@ -35,9 +36,12 @@ export default function Dashboard() {
 
     getTitle();
   }, [Dashboard, upvoted]);
+
+  useEffect(() => {
+    console.log(category);
+  }, [category]);
   return (
     <div>
-      
       <body>
         <div className="my-4 flex flex-row justify-between  border-4 border-white">
           <div>
@@ -57,8 +61,17 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-0"
                     name="category[]"
-                    value="science"
+                    value="Web Dev"
                     type="checkbox"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
                   <label
@@ -73,8 +86,17 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Data Science"
                     type="checkbox"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
                   <label
@@ -83,14 +105,22 @@ export default function Dashboard() {
                   >
                     Data Science📊
                   </label>
-                  
                 </div>
                 <div className="flex items-center">
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Graphic Design"
                     type="checkbox"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
                   <label
@@ -104,8 +134,17 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Digital Marketing"
                     type="checkbox"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
                   <label
@@ -119,7 +158,16 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Writing"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     type="checkbox"
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
@@ -134,7 +182,16 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Web 3"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     type="checkbox"
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
@@ -149,7 +206,16 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Bootstrapping"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     type="checkbox"
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
@@ -164,7 +230,16 @@ export default function Dashboard() {
                   <input
                     id="filter-mobile-category-4"
                     name="category[]"
-                    value="diys"
+                    value="Startups"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCategory([...category, e.target.value]);
+                      } else {
+                        setCategory(
+                          category.filter((item) => item !== e.target.value)
+                        );
+                      }
+                    }}
                     type="checkbox"
                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   ></input>
@@ -179,78 +254,85 @@ export default function Dashboard() {
             </div>
           </div>
           <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
-          {data.map((item, index) => {
-            //console.log(JSON.parse(item)["user_image"]);
-            return (
-              <div className="mx-4 w-full sm:w-9/12">
-                <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-4 border-black rounded-md">
-                  <div>
-                    <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
-                      {JSON.parse(item)["title"]}
-                    </h1>
-                  </div>
-                  <div
-                    onClick={() => {
-                      window.location.href =
-                        prodURL + "/#/kit/" + JSON.parse(item)["id"];
-                    }}
-                  >
-                    <p className="py-2 text-base leading-relaxed text-gray-700 ">
-                      {/*{ReactHtmlParser(
-                        JSON.parse(item)["markdown_data"].substring(0, 200)
-                      )}*/}
-                      <ReactMarkdown>
-                        {JSON.parse(item)["markdown_data"].substring(0, 210) +
-                          "..."}
-                      </ReactMarkdown>
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <div className="flex flew-row gap-4">
-                      <div className="relative w-12 h-12">
-                        <img
-                          className="rounded-full border border-gray-100 shadow-sm"
-                          src={JSON.parse(item)["profile_image"]}
-                          alt="User Avatar"
-                          width={320}
-                          height={320}
-                        />
-                      </div>
+            {data.map((item, index) => {
+              if (
+                category.includes(JSON.parse(item)["categories"]) ||
+                category.length === 0
+              ) {
+                return (
+                  <div className="mx-4 w-full sm:w-9/12">
+                    <div className="p-2 my-6 sm:p-4 bg-white  shadow-2xl border-4 border-black rounded-md">
                       <div>
-                        <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700 ">
-                          {JSON.parse(item)["user"]}
+                        <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
+                          {JSON.parse(item)["title"]}
                         </h1>
                       </div>
-                    </div>
-                    <div className="flex flex-row">
-                      <button
+                      <div
                         onClick={() => {
-                          axios
-                            .get(prodURL + "/api/up/" + JSON.parse(item)["id"])
-                            .then(() => {
-                              setUpvoted(!upvoted);
-                            });
+                          window.location.href =
+                            prodURL + "/#/kit/" + JSON.parse(item)["id"];
                         }}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M5 11l7-7 7 7M5 19l7-7 7 7"
-                          />
-                        </svg>
-                      </button>
-                      <p className="font-semibold text-black text-xl">
-                        {JSON.parse(item)["upvotes"].length}
-                      </p>
-                      {/* <div>
+                        <p className="py-2 text-base leading-relaxed text-gray-700 ">
+                          {/*{ReactHtmlParser(
+                        JSON.parse(item)["markdown_data"].substring(0, 200)
+                      )}*/}
+                          <ReactMarkdown>
+                            {JSON.parse(item)["markdown_data"].substring(
+                              0,
+                              210
+                            ) + "..."}
+                          </ReactMarkdown>
+                        </p>
+                      </div>
+                      <div className="flex justify-between">
+                        <div className="flex flew-row gap-4">
+                          <div className="relative w-12 h-12">
+                            <img
+                              className="rounded-full border border-gray-100 shadow-sm"
+                              src={JSON.parse(item)["profile_image"]}
+                              alt="User Avatar"
+                              width={320}
+                              height={320}
+                            />
+                          </div>
+                          <div>
+                            <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700 ">
+                              {JSON.parse(item)["user"]}
+                            </h1>
+                          </div>
+                        </div>
+                        <div className="flex flex-row">
+                          <button
+                            onClick={() => {
+                              axios
+                                .get(
+                                  prodURL + "/api/up/" + JSON.parse(item)["id"]
+                                )
+                                .then(() => {
+                                  setUpvoted(!upvoted);
+                                });
+                            }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                              />
+                            </svg>
+                          </button>
+                          <p className="font-semibold text-black text-xl">
+                            {JSON.parse(item)["upvotes"].length}
+                          </p>
+                          {/* <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"
@@ -266,12 +348,13 @@ export default function Dashboard() {
                           />
                         </svg>
                       </div> */}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              }
+            })}
           </div>
         </div>
       </body>
