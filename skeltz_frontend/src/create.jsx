@@ -36,7 +36,6 @@ function Create() {
         title: title,
         markdown_data: body,
         categories: category,
-        cat_id: "1",
       };
 
       axios
@@ -47,9 +46,9 @@ function Create() {
         })
         .then((res1) => {
           console.log(res1);
-          console.log(JSON.parse(res1['data']['kit'])['id']);
-          console.log(res1.data['kit']['id']);
-          const id_num = JSON.parse(res1.data['kit'])['id'];
+          console.log(JSON.parse(res1["data"]["kit"])["id"]);
+          console.log(res1.data["kit"]["id"]);
+          const id_num = JSON.parse(res1.data["kit"])["id"];
           window.location.href = `${prodURL}#/kit/${id_num}`;
         })
         .catch((error) => {
@@ -97,7 +96,13 @@ function Create() {
             >
               <option>Select a category</option>
               <option value="Web Dev">Web Dev</option>
-              <option value="DIY">DIY</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Writing">Writing</option>
+              <option value="Web 3">Web 3</option>
+              <option value="Bootstrapping">Bootstrapping</option>
+              <option value="Startups">Startups</option>
             </select>
             <button onClick={() => setPreviewtoggle(!previewtoggle)}>
               Preview
