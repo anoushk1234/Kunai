@@ -120,7 +120,7 @@ def search_kits(request, search_term):
 @csrf_exempt
 def add_kit(request):
     '''
-    user,title,markdown_data,upvotes,downvotes,Categories,cat_id
+    user,title,markdown_data,upvotes,downvotes,Categories
     '''
     if request.method == 'POST':
         screen_name = str(request.user.username)
@@ -136,9 +136,8 @@ def add_kit(request):
             title = request.data['title']
             markdown_data = request.data['markdown_data']
             categories = request.data['categories']
-            cat_id = request.data['cat_id']
             kit_serializer = KitSerializer(data={'user': screen_name, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
-                                                 'upvotes': [id], 'categories': categories, 'cat_id': cat_id})
+                                                 'upvotes': [id], 'categories': categories})
         except Exception as e:
             print(e)
             return JsonResponse({'status': 'error', 'message': 'Invalid data', 'error': str(e)})
