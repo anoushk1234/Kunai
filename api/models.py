@@ -14,11 +14,14 @@ class Category(models.Model):
 
 class Kit(models.Model):
     CATEGORIES = (
-        ('Web Dev', 'Web Dev'),
-        ('Graphic Design', 'Graphic Design'),
-        ('Crypto', 'Crypto'),
-        ('Data Science', 'Data Science'),
-        ('Digital Marketing', 'Digital Marketing'),
+        ("Web Dev", "Web Dev"),
+        ("Graphic Design", "Graphic Design"),
+        ("Web 3", "Web 3"),
+        ("Data Science", "Data Science"),
+        ("Digital Marketing", "Digital Marketing"),
+        ("Startups", "Startups"),
+        ("Bootstrapping", "Bootstrapping"),
+        ("Writing","Writing"),
     )
     user = models.CharField(max_length=200)
     profile_image = models.URLField(max_length=200, default=None)
