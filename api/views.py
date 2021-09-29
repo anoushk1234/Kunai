@@ -159,7 +159,6 @@ def update_kit(request, pk):
             kit_obj.title = data['title']
             kit_obj.markdown_data = data['markdown_data']
             kit_obj.categories = data['categories']
-            kit_obj.cat_relation = data['cat_relation']
             kit_serializer = KitSerializer.update(kit_obj, data)
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         except Exception as e:

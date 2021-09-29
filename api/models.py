@@ -21,7 +21,7 @@ class Kit(models.Model):
         ("Digital Marketing", "Digital Marketing"),
         ("Startups", "Startups"),
         ("Bootstrapping", "Bootstrapping"),
-        ("Writing","Writing"),
+        ("Writing", "Writing"),
     )
     user = models.CharField(max_length=200)
     profile_image = models.URLField(max_length=200, default=None)
@@ -30,11 +30,9 @@ class Kit(models.Model):
     upvotes = models.ManyToManyField(User, related_name='upvotes')
     # downvotes = models.IntegerField(default=0)
     categories = models.TextField(choices=CATEGORIES, default='No Category')
-    cat_relation = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, default=None)
 
     def __str__(self):
-        return "%s %s %s %s %s %s" % (self.user, self.markdown_data, self.title, self.upvotes, self.categories, self.cat_relation)
+        return "%s %s %s %s %s" % (self.user, self.markdown_data, self.title, self.upvotes, self.categories)
 
 
 class KitComments(models.Model):
