@@ -1,8 +1,8 @@
 import React from "react";
 import ReactCanvasConfetti from "react-canvas-confetti";
-
+import { useEffect } from "react";
 const canvasStyles = {
-  position: "fixed",
+  position: "absolute",
   pointerEvents: "none",
   width: "100%",
   height: "100%",
@@ -15,6 +15,7 @@ export default class ItsConfetti extends React.Component {
     super(props);
     this.animationInstance = null;
   }
+
 
   makeShot = (particleRatio, opts) => {
     this.animationInstance &&
@@ -62,10 +63,14 @@ export default class ItsConfetti extends React.Component {
     this.animationInstance = instance;
   };
 
+
+
   render() {
     return (
       <>
-        <div className="z-10" onClick={this.props.playConfetti ? this.handlerFire : null}>
+        <div
+          className="z-10 absolute w-full h-full"
+        >
           <ReactCanvasConfetti
             refConfetti={this.getInstance}
             style={canvasStyles}

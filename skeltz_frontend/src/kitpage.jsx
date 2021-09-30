@@ -3,7 +3,7 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import ItsConfetti from "./components/itsconfetti";
+//import Confetti from "./components/itsconfetti";
 // import { remark } from "remark";
 // import html from "remark-html";
 // export async function markdownToHtml(markdown) {
@@ -13,11 +13,11 @@ import ItsConfetti from "./components/itsconfetti";
 // }
 export default function KitPage() {
   const [kit, setKit] = useState({});
-  const [playConfetti, setPlayConfetti] = useState(false);
+  // const [playConfetti, setPlayConfetti] = useState(true);
   //play confetti the first time the user makes a kit
-  useEffect(() => {
-    setPlayConfetti(true);
-  }, []);
+  // useEffect(() => {
+  //   setPlayConfetti(true);
+  // }, [playConfetti,window.onload]);
   const [upvotes, setUpvotes] = useState(0);
   const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
@@ -44,7 +44,6 @@ export default function KitPage() {
         <NavbarPrivate />
       </header>
       <body>
-        {playConfetti && <ItsConfetti playConfetti={playConfetti} />}
         <div className="my-4 flex justify-center">
           <div className="mx-4 w-full sm:w-9/12">
             <div className="p-2 sm:p-4 bg-white shadow-2xl border-4 border-black rounded-md">
@@ -78,6 +77,41 @@ export default function KitPage() {
                   </div>
                 </div>
                 <div className="flex flex-row align-middle">
+                  {kit["user"] ===
+                  axios
+                    .get(prodURL + "/api/getuser/")
+                    .then((res) => res.data["screen_name"]) ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 flex"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  ) : (
+                    <></>
+                  )}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 flex"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                    />
+                  </svg>
                   <button
                     onClick={() => {
                       axios.get(prodURL + "/api/up/" + kit["id"]).then(() => {
@@ -87,7 +121,7 @@ export default function KitPage() {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
+                      class="h-6 w-6 flex"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
