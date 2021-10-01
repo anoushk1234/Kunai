@@ -186,7 +186,7 @@ def get_kit_list(request):
         kit_serializer = KitSerializer(kit_list, many=True)
         items = [json.dumps(item) for item in kit_serializer.data]
         l = len(Convert(items))-5
-        print(items)
+        #print(items)
         return JsonResponse({'status': 'ok', 'items': items})
 
 
