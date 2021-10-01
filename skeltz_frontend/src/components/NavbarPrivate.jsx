@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
-
+import SearchBar from "./searchbar";
 export default function NavbarPublic() {
   return (
     <div className="mt-6 mb-6">
@@ -19,6 +19,7 @@ export default function NavbarPublic() {
         <div>
           <div>
             <div className="flex flex-row gap-4">
+              <SearchBar />
               <ThemeSwitch />
               <Link to="/account">
                 <a>
