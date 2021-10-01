@@ -1,21 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
-import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  Hits,
-  SearchBox,
-  Pagination,
-} from "react-instantsearch-dom";
-
-import Hit from "./hit";
 
 export default function NavbarPublic() {
-  const searchClient = algoliasearch(
-    "RVGFGJXR4H",
-    "47b33480bc6fa1c1981a09715bf7778a"
-  );
 
   return (
     <div className="mt-6 mb-6">
@@ -32,16 +19,7 @@ export default function NavbarPublic() {
 
         <div>
           <div className="flex flex-row gap-4">
-            <InstantSearch
-              indexName="skeltz"
-              searchClient={searchClient}
-            >
-              <div className="right-panel">
-                <SearchBox />
-                <Hits hitComponent={Hit} />
-                <Pagination />
-              </div>
-            </InstantSearch>
+            
             <div>
               <ThemeSwitch />
             </div>

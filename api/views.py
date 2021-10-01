@@ -1,6 +1,7 @@
 from inspect import isabstract
 import api
 import re
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -106,8 +107,13 @@ def get_comments_for_kit(request, pk):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def search_kits(request, search_term):
-    kits = Kit.objects.filter(title__icontains=search_term)
+def advanced_search(request, search_term):
+    search_term = search_term.split(' ')
+    for term in search_term:
+        kits = Kit.objects.filter(
+            Q(title__icontains=term) |
+            Q(user__icontains=term) |
+            Q(categories__icontains=term))
     serializer = KitSerializer(kits, many=True)
     if serializer.data:
         return JsonResponse(serializer.data, safe=False)
