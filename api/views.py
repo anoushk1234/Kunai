@@ -114,6 +114,8 @@ def advanced_search(request, search_term):
             Q(title__icontains=term) |
             Q(user__icontains=term) |
             Q(categories__icontains=term))
+    #sort the kits depending on the search term
+    kits = kits.order_by('-upvotes')
     serializer = KitSerializer(kits, many=True)
     if serializer.data:
         return JsonResponse(serializer.data, safe=False)

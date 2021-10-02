@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import SearchBar from "./searchbar";
 
-export default function NavbarPublic() {
+export default function NavbarPublic({setPassData}) {
   return (
     <div className="mt-6 mb-6">
       <div className="flex justify-between">
@@ -20,7 +20,7 @@ export default function NavbarPublic() {
         <div>
           <div className="flex flex-row gap-4">
             <div>
-              <SearchBar />
+              <SearchBar setKit={setPassData} />
             </div>
             <div>
               <ThemeSwitch />

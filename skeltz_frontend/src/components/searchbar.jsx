@@ -1,15 +1,48 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 // import Hit from "./hit";
 // import { useState, useEffect } from "react";
-const SearchBar = () => {
+const SearchBar = ({ setKit }) => {
+  const [query, setQuery] = useState("");
+
+  const prodURL = "https://kunaikit.herokuapp.com/";
+  const searchURL = `${prodURL}api/search/${query}`;
+
+  useEffect(() => {
+    const fetchData = async (url) => {
+      axios
+        .get(url)
+        .then((res) => {
+          setKit(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    if (query) {
+      fetchData(searchURL).then(() => {
+        console.log("searching" + window.location.hash.includes("#/kit"));
+        if (window.location.hash.includes("#/kit")) {
+          window.location.hash = "/dashboard/";
+        }
+      });
+    } else {
+      setKit([]);
+    }
+  }, [query]);
+
   return (
     <div className="inline-flex flex-col justify-center">
       <div class="pt-2 relative mx-auto text-gray-600">
         <input
           class="border-4 border-black bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
           type="search"
+          onChangeCapture={(e) => setQuery(e.target.value)}
           name="search"
-          placeholder="Search"
+          placeholder="Search by title, user or category"
         ></input>
         <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
           <svg

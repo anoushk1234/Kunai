@@ -18,24 +18,33 @@ export async function markdownToHtml(markdown) {
   return result.toString();
 }
 
-export default function Dashboard() {
+export default function Dashboard({ passData }) {
   const [upvoted, setUpvoted] = useState(false);
   const [category, setCategory] = useState([]);
   const prodURL = "https://kunaikit.herokuapp.com";
-  console.log("url: " + thispersondoesnotexist);
+  //console.log("url: " + thispersondoesnotexist);
   // console.log(cookieCutter.get('username'));
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getTitle() {
       const res = await axios.get("https://kunaikit.herokuapp.com/api/getkit/");
       console.log(res.data["items"].length);
+      //setData(res.data["items"]);
+
       setData(res.data["items"]);
-      console.log(data);
+      if (passData.length > 0) {
+        passData.map((item, index) => {
+          passData[index] = JSON.stringify(item);
+        });
+        setData(passData);
+      }
+
+      console.log(passData);
       //console.log(title, content, username, userId, userImage);
     }
 
     getTitle();
-  }, [Dashboard, upvoted]);
+  }, [Dashboard, upvoted, passData]);
 
   useEffect(() => {
     console.log(category);
