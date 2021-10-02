@@ -52,7 +52,7 @@ export default function KitPage() {
   return (
     <div>
       <header>
-        <NavbarPrivate setKit={setPassData} />
+        <NavbarPrivate setPassData={setPassData} />
       </header>
       <body>
         {passData.length > 0 ? (
