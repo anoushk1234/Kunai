@@ -23,12 +23,11 @@ const SearchBar = ({ setKit }) => {
     };
 
     if (query) {
-      fetchData(searchURL).then(() => {
-        console.log("searching" + window.location.hash.includes("#/kit"));
-        if (window.location.hash.includes("#/kit")) {
-          window.location.hash = "/dashboard/";
-        }
-      });
+      fetchData(searchURL);
+      console.log("searching" + window.location.hash.includes("#/kit"));
+      // if (window.location.hash.includes("#/kit")) {
+      //   window.location.hash = "/dashboard/";
+      // }
     } else {
       setKit([]);
     }
