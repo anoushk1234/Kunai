@@ -30,7 +30,7 @@ export default function Account() {
             <div className="p-2 sm:p-4 bg-white dark:bg-black shadow-2xl border-2 border-gray-500">
               <div class="photo-wrapper flex justify-center p-2 text-center">
                 <img
-                  className="rounded-full border border-gray-100 shadow-sm"
+                  className="rounded-full border border-gray-100 shadow-sm img-responsive"
                   src={() => {
                     const HDpic = remove_normal(
                       twitterprofile["profile_image_url_https"]
