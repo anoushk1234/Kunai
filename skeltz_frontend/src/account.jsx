@@ -7,6 +7,7 @@ import Dashboard from "./dashboard";
 export default function Account() {
   const [twitterprofile, setTwitterprofile] = useState({});
   const [passData, setPassData] = useState([]);
+  const [pbsimg, setPbsimg] = useState("");
   const userAPI = "https://kunaikit.herokuapp.com/api/getuser/";
   function remove_normal(url) {
     return url.replace("_normal", "");
@@ -16,6 +17,15 @@ export default function Account() {
       setTwitterprofile(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    const HDpic = remove_normal(
+      twitterprofile["profile_image_url_https"]
+        ? twitterprofile["profile_image_url_https"]
+        : "https://img.icons8.com/windows/32/000000/guest-male--v1.png"
+    );
+    setPbsimg(HDpic);
+  }, [twitterprofile]);
 
   return (
     <div>
@@ -33,14 +43,7 @@ export default function Account() {
                   className="img-responsive"
                   id="profile-photo"
                   class="rounded-full border border-gray-100 shadow-sm"
-                  src={() => {
-                    const HDpic = remove_normal(
-                      twitterprofile["profile_image_url_https"]
-                        ? twitterprofile["profile_image_url_https"]
-                        : "https://img.icons8.com/windows/32/000000/guest-male--v1.png"
-                    );
-                    return HDpic;
-                  }}
+                  src={pbsimg}
                   alt="User Avatar"
                   width={128}
                   height={128}
