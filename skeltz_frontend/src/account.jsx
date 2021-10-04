@@ -54,7 +54,9 @@ export default function Account() {
                   {twitterprofile["name"]}
                 </h3>
                 <div class="text-center text-gray-400 text-xs font-semibold">
-                  <p>{twitterprofile["description"]}</p>
+                  <p>
+                    <a href={twitterprofile["url"]}>Twitter</a>
+                  </p>
                 </div>
                 <table class=" flex justify-center py-2 text-base leading-relaxed text-gray-700 dark:text-gray-400 my-3">
                   <tbody>
@@ -67,9 +69,7 @@ export default function Account() {
                       </td>
                     </tr>
                     <tr>
-                      <td class="px-2 py-2">
-                        <a href={twitterprofile["url"]}>link</a>
-                      </td>
+                      <td class="px-2 py-2">{twitterprofile["description"]}</td>
                     </tr>
                   </tbody>
                 </table>

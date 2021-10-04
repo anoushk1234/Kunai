@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import SearchBar from "./searchbar";
-export default function NavbarPublic({setPassData}) {
+export default function NavbarPublic({ setPassData }) {
   return (
     <div className="mt-6 mb-6">
       <div className="flex justify-between">
@@ -41,7 +41,7 @@ export default function NavbarPublic({setPassData}) {
                 </a>
               </Link>
               <Link to="/create">
-                <button className="flex gap-2 items-center px-6 py-2 font-semibold text-black dark:text-white transition duration-500 ease-in-out transform hover:bg-gray-200 dark:hover:bg-gray-700 rounded-sm border-2 border-gray-500 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+                <button className="flex hover:scale-110 gap-2 items-center px-6 py-2 font-semibold hover:h-8 hover:w-16 text-white dark:text-white transition duration-600 ease-in-out transform rounded-sm bg-black  ring-offset-current ring-offset-2">
                   Create Kit
                 </button>
               </Link>
