@@ -41,7 +41,7 @@ export default function NavbarPublic({ setPassData }) {
                 </a>
               </Link>
               <Link to="/create">
-                <button className="flex hover:scale-110 gap-2 items-center px-6 py-2 font-semibold hover:h-8 hover:w-16 text-white dark:text-white transition duration-600 ease-in-out transform rounded-sm bg-black  ring-offset-current ring-offset-2">
+                <button className="flex hover:scale-110 gap-2 items-center px-6 py-2 font-semibold text-white dark:text-white transition duration-600 ease-in-out transform rounded-sm bg-black  ring-offset-current ring-offset-2">
                   Create Kit
                 </button>
               </Link>
