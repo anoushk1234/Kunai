@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import SearchBar from "./searchbar";
+import axios from "axios";
 export default function NavbarPublic({ setPassData }) {
+  const prodURL="https://kunaikit.herokuapp.com/"
   return (
     <div className="mt-6 mb-6">
       <div className="flex justify-between">
@@ -45,7 +47,11 @@ export default function NavbarPublic({ setPassData }) {
                   Create Kit
                 </button>
               </Link>
-              <button>
+              <button
+                onClick={() => {
+                  axios.get(prodURL+'accounts/logout');
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"
