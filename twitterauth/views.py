@@ -68,7 +68,7 @@ def get_user_details(request, *args, **kwargs):
         # user_details['email'] = u.user.email
         user_details['screen_name'] = user.screen_name
         user_details['profile_image_url'] = user.profile_image_url
-        user_details['user_id']=user.id
+        user_details['user_id']=User.objects.get(username=request.user.username).id
 
         return JsonResponse(user_details, status=status.HTTP_200_OK)
     except tweepy.TweepError as e:

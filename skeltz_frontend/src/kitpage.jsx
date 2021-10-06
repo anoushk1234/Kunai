@@ -45,7 +45,7 @@ export default function KitPage() {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(prodURL + "/auth/userdetails/");
-      setLoggeduser(response.data["screen_name"]);
+      setLoggeduser(response.data["user_id"]);
     }
     fetchData();
   }, [slug]);
