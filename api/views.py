@@ -114,7 +114,7 @@ def advanced_search(request, search_term):
             Q(title__icontains=term) |
             Q(user__icontains=term) |
             Q(categories__icontains=term))
-    #sort the kits depending on the search term
+    # sort the kits depending on the search term
     kits = kits.order_by('-upvotes')
     serializer = KitSerializer(kits, many=True)
     if serializer.data:
@@ -124,8 +124,7 @@ def advanced_search(request, search_term):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
-@csrf_exempt
+@permission_classes([AllowAny])
 def add_kit(request):
     '''
     user,title,markdown_data,upvotes,downvotes,Categories
@@ -144,7 +143,8 @@ def add_kit(request):
             title = request.data['title']
             markdown_data = request.data['markdown_data']
             categories = request.data['categories']
-            kit_serializer = KitSerializer(data={'user': screen_name, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
+            user_id = request.user.id
+            kit_serializer = KitSerializer(data={'user': screen_name,'user_id':user_id, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
                                                  'upvotes': [id], 'categories': categories})
         except Exception as e:
             print(e)
@@ -166,6 +166,7 @@ def update_kit(request, pk):
             kit_obj.title = data['title']
             kit_obj.markdown_data = data['markdown_data']
             kit_obj.categories = data['categories']
+            kit_obj.user_id = request.user.id
             kit_serializer = KitSerializer.update(kit_obj, data)
             return JsonResponse({'status': 'ok', 'kit': str(kit_serializer.data)})
         except Exception as e:
@@ -188,7 +189,7 @@ def get_kit_list(request):
         kit_serializer = KitSerializer(kit_list, many=True)
         items = [json.dumps(item) for item in kit_serializer.data]
         l = len(Convert(items))-5
-        #print(items)
+        # print(items)
         return JsonResponse({'status': 'ok', 'items': items})
 
 
@@ -233,7 +234,7 @@ def get_user_kits(request):
     List all the kits.
     """
     if request.method == 'GET':
-        kits = Kit.objects.filter(user=request.user.username).get()
+        kits = Kit.objects.filter(user_id=request.user.id).get()
         serializer = KitSerializer(kits, many=True)
         return JsonResponse(str(kits), safe=False)
 

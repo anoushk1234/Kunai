@@ -24,6 +24,7 @@ class Kit(models.Model):
         ("Writing", "Writing"),
     )
     user = models.CharField(max_length=200)
+    user_id = models.IntegerField(null=True)
     profile_image = models.URLField(max_length=200, default=None)
     title = models.CharField(max_length=200, default='')
     markdown_data = models.TextField(default='')
