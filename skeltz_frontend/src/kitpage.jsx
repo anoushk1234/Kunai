@@ -3,6 +3,7 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import Cookies from "js-cookie";
 import Dashboard from "./dashboard";
 //import Confetti from "./components/itsconfetti";
 // import { remark } from "remark";
@@ -43,7 +44,7 @@ export default function KitPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(prodURL + "/api/getuser/");
+      const response = await axios.get(prodURL + "/auth/userdetails/");
       setLoggeduser(response.data["screen_name"]);
     }
     fetchData();
@@ -91,7 +92,7 @@ export default function KitPage() {
                     </div>
                   </div>
                   <div className="flex flex-row align-middle">
-                    {kit["user"] === loggeduser ? (
+                    {kit["user_id"] === loggeduser ? (
                       <button
                         type="button"
                         onClick={() => {
