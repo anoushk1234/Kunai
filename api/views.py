@@ -30,7 +30,10 @@ def health(request):
 def get_kit_upvotes_and_downvotes(request, kit_id):
     users_upvoted = Kit.objects.filter(id=kit_id).values('user_id')
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
+    print(users_upvoted)
+    print(upvotes)
     users_upvoted = list(users_upvoted.values_list('user_id', flat=True))
+    print(users_upvoted)
     #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
     return JsonResponse({"upvotes": str(upvotes), "users_upvoted": json.dumps(users_upvoted)})
 

@@ -33,7 +33,7 @@ class Kit(models.Model):
     categories = models.TextField(choices=CATEGORIES, default='No Category')
 
     def __str__(self):
-        return "%s %s %s %s %s" % (self.user, self.markdown_data, self.title, self.upvotes, self.categories)
+        return "%s %s %s %s %s %s" % (self.user,self.user_id, self.markdown_data, self.title, self.upvotes, self.categories)
 
 
 class KitComments(models.Model):
