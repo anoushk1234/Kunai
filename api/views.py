@@ -30,8 +30,9 @@ def health(request):
 def get_kit_upvotes_and_downvotes(request, kit_id):
     users_upvoted = Kit.objects.filter(id=kit_id).values('user_id')
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
+    users_upvoted = list(users_upvoted.values_list('user_id', flat=True))
     #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
-    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": list(users_upvoted.values_list('user_id', flat=True))})
+    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": json.dumps(users_upvoted)})
 
 
 @api_view(['GET'])
