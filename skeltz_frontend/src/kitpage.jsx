@@ -145,7 +145,7 @@ export default function KitPage() {
                       />
                     </svg>
                     {hasupvoted ? (
-                      <span className="flex mx-4  rounded-lg w-17 p-2 bg-white  border-black flex-row justify-around">
+                      <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
                         <button
                           className="flex"
                           onClick={() => {
@@ -202,7 +202,7 @@ export default function KitPage() {
                             />
                           </svg>
                         </button>
-                        <p className="flex font-semibold text-black text-xl">
+                        <p className="flex font-semibold text-white text-xl">
                           {upvotes}
                         </p>
                       </span>
