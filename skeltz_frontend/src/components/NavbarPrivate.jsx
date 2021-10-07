@@ -48,6 +48,7 @@ export default function NavbarPublic({ setPassData }) {
                 </button>
               </Link>
               <button
+              class="mx-4"
                 onClick={() => {
                   axios.get(prodURL+'accounts/logout');
                 }}

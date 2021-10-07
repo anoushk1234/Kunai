@@ -22,7 +22,7 @@ export default function KitPage() {
   //   setPlayConfetti(true);
   // }, [playConfetti,window.onload]);
   const [upvotes, setUpvotes] = useState(0);
-  const [hasupvoted, setHasupvoted] = useState(false);
+  //const [upvoted, setupvoted] = useState(false);
   const [loggeduser, setLoggeduser] = useState("");
   const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
@@ -39,13 +39,13 @@ export default function KitPage() {
       setUpvotes(upv.data["upvotes"]);
       console.log(upv.data["users_upvoted"]);
       upv.data["users_upvoted"].includes(loggeduser)
-        ? setHasupvoted(true)
-        : setHasupvoted(false);
+        ? setUpvoted(true)
+        : setUpvoted(false);
       //setDownvotes(upvotes.data["downvotes"]);
       console.log(kit);
     }
     fetchData();
-  }, [slug, upvoted]);
+  }, [slug]);
 
   useEffect(() => {
     async function fetchData() {
@@ -53,7 +53,7 @@ export default function KitPage() {
       setLoggeduser(response.data["user_id"]);
     }
     fetchData();
-  }, [slug]);
+  }, [slug,upvotes,upvoted]);
 
   return (
     <div>
@@ -73,7 +73,7 @@ export default function KitPage() {
                   </h1>
                 </div>
                 <div>
-                  <p className="py-2 text-base leading-relaxed text-gray-700">
+                  <p style={{}} className="py-2 text-base leading-relaxed text-gray-700">
                     <ReactMarkdown>
                       {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
                     </ReactMarkdown>
@@ -144,7 +144,7 @@ export default function KitPage() {
                         d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
                       />
                     </svg>
-                    {hasupvoted ? (
+                    {upvoted ? (
                       <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
                         <button
                           className="flex"
