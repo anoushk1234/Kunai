@@ -29,7 +29,7 @@ export default function NavbarPublic({setPassData}) {
             <div>
               <Link to="/signin">
                 <a>
-                  <button className="flex items-center px-6 py-2 font-semibold text-black dark:text-white transition duration-500 ease-in-out transform hover:bg-gray-200 dark:hover:bg-gray-700 border-3 dark:border-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+                  <button className="flex items-center px-6 py-2 font-semibold bg-black text-white rounded-md dark:text-white transition duration-500 ease-in-out transform  dark:hover:bg-gray-700 border-3 dark:border-black  hover:scale-110 hover:bg-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
                     Sign In
                   </button>
                 </a>
@@ -39,7 +39,7 @@ export default function NavbarPublic({setPassData}) {
             <div>
               <Link to="/signin">
                 <a>
-                  <button className="flex items-center px-6 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-indigo-500 dark:bg-indigo-700 hover:bg-indigo-700 dark:hover:bg-indigo-900 border-2 dark:border-gray-200 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+                  <button className="flex rounded-md items-center px-6 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-indigo-500 dark:bg-indigo-700 hover:bg-indigo-700 dark:hover:bg-indigo-900 border-2 dark:border-gray-200 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
                     Get Started
                   </button>
                 </a>

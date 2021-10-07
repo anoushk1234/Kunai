@@ -28,10 +28,10 @@ def health(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_upvotes_and_downvotes(request, kit_id):
-    kit = Kit.objects.get(id=kit_id)
+    users_upvoted = Kit.objects.filter(id=kit_id).values('user')
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
     #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
-    return JsonResponse({"upvotes": str(upvotes)})
+    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": list(users_upvoted.values_list('user', flat=True))})
 
 
 @api_view(['GET'])

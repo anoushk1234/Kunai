@@ -22,6 +22,7 @@ export default function KitPage() {
   //   setPlayConfetti(true);
   // }, [playConfetti,window.onload]);
   const [upvotes, setUpvotes] = useState(0);
+  const [hasupvoted, setHasupvoted] = useState(false);
   const [loggeduser, setLoggeduser] = useState("");
   const [upvoted, setUpvoted] = useState(false);
   const prodURL = "https://kunaikit.herokuapp.com";
@@ -36,6 +37,10 @@ export default function KitPage() {
       const upv = await axios.get(upvotesAPI);
       console.log(upv.data);
       setUpvotes(upv.data["upvotes"]);
+      console.log(upv.data);
+      upv.data["users_upvoted"].includes(loggeduser)
+        ? setHasupvoted(true)
+        : setHasupvoted(false);
       //setDownvotes(upvotes.data["downvotes"]);
       console.log(kit);
     }
@@ -139,31 +144,69 @@ export default function KitPage() {
                         d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
                       />
                     </svg>
-                    <button
-                      onClick={() => {
-                        axios.get(prodURL + "/api/up/" + kit["id"]).then(() => {
-                          setUpvoted(!upvoted);
-                        });
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6 flex"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 11l7-7 7 7M5 19l7-7 7 7"
-                        />
-                      </svg>
-                    </button>
-                    <p className="font-semibold text-black text-xl">
-                      {upvotes}
-                    </p>
+                    {hasupvoted ? (
+                      <span className="flex mx-4  rounded-lg w-17 p-2  border-black flex-row justify-around">
+                        <button
+                          className="flex"
+                          onClick={() => {
+                            axios
+                              .get(prodURL + "/api/up/" + kit["id"])
+                              .then(() => {
+                                setUpvoted(!upvoted);
+                              });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 flex"
+                            fill="black"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                            />
+                          </svg>
+                        </button>
+                        <p className="flex font-semibold text-white text-xl">
+                          {upvotes}
+                        </p>
+                      </span>
+                    ) : (
+                      <span className="flex mx-4 bg-black rounded-lg w-17 p-2  border-black flex-row justify-around">
+                        <button
+                          className="flex"
+                          onClick={() => {
+                            axios
+                              .get(prodURL + "/api/up/" + kit["id"])
+                              .then(() => {
+                                setUpvoted(!upvoted);
+                              });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 flex"
+                            fill="white"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                            />
+                          </svg>
+                        </button>
+                        <p className="flex font-semibold text-white text-xl">
+                          {upvotes}
+                        </p>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
