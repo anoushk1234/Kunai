@@ -37,7 +37,7 @@ export default function KitPage() {
       const upv = await axios.get(upvotesAPI);
       console.log(upv.data);
       setUpvotes(upv.data["upvotes"]);
-      console.log(upv.data);
+      console.log(upv.data["users_upvoted"]);
       upv.data["users_upvoted"].includes(loggeduser)
         ? setHasupvoted(true)
         : setHasupvoted(false);
@@ -145,7 +145,7 @@ export default function KitPage() {
                       />
                     </svg>
                     {hasupvoted ? (
-                      <span className="flex mx-4  rounded-lg w-17 p-2  border-black flex-row justify-around">
+                      <span className="flex mx-4  rounded-lg w-17 p-2 bg-white  border-black flex-row justify-around">
                         <button
                           className="flex"
                           onClick={() => {
@@ -161,7 +161,7 @@ export default function KitPage() {
                             class="h-6 w-6 flex"
                             fill="black"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
+                            stroke="black"
                           >
                             <path
                               stroke-linecap="round"
@@ -171,12 +171,12 @@ export default function KitPage() {
                             />
                           </svg>
                         </button>
-                        <p className="flex font-semibold text-white text-xl">
+                        <p className="flex font-semibold text-black text-xl">
                           {upvotes}
                         </p>
                       </span>
                     ) : (
-                      <span className="flex mx-4 bg-black rounded-lg w-17 p-2  border-black flex-row justify-around">
+                      <span className="flex mx-4 bg-black rounded-lg w-17 p-2 border-2 border-black flex-row justify-around">
                         <button
                           className="flex"
                           onClick={() => {
@@ -190,9 +190,9 @@ export default function KitPage() {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 flex"
-                            fill="white"
+                            fill="black"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
+                            stroke="white"
                           >
                             <path
                               stroke-linecap="round"
@@ -202,7 +202,7 @@ export default function KitPage() {
                             />
                           </svg>
                         </button>
-                        <p className="flex font-semibold text-white text-xl">
+                        <p className="flex font-semibold text-black text-xl">
                           {upvotes}
                         </p>
                       </span>
