@@ -159,7 +159,7 @@ export default function KitPage() {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 flex"
-                            fill="black"
+                            fill="white"
                             viewBox="0 0 24 24"
                             stroke="black"
                           >
