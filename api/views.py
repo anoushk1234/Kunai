@@ -28,10 +28,10 @@ def health(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_upvotes_and_downvotes(request, kit_id):
-    users_upvoted = Kit.objects.filter(id=kit_id).values('user')
+    users_upvoted = Kit.objects.filter(id=kit_id).values('user_id')
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
     #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
-    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": list(users_upvoted.values_list('user', flat=True))})
+    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": list(users_upvoted.values_list('user_id', flat=True))})
 
 
 @api_view(['GET'])
@@ -144,7 +144,7 @@ def add_kit(request):
             markdown_data = request.data['markdown_data']
             categories = request.data['categories']
             user_id = request.user.id
-            kit_serializer = KitSerializer(data={'user': screen_name,'user_id':user_id, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
+            kit_serializer = KitSerializer(data={'user': screen_name, 'user_id': user_id, "profile_image": profile_image_url, 'title': title, 'markdown_data': markdown_data,
                                                  'upvotes': [id], 'categories': categories})
         except Exception as e:
             print(e)
