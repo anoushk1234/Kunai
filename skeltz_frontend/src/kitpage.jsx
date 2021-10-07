@@ -30,22 +30,22 @@ export default function KitPage() {
   const { slug } = useParams();
   const API = `https://kunaikit.herokuapp.com/api/getkit/${slug}`;
   const upvotesAPI = `https://kunaikit.herokuapp.com/api/votes/${slug}`;
+  async function fetchData() {
+    const response = await axios.get(API);
+    setKit(JSON.parse(response.data["kit"]));
+    const upv = await axios.get(upvotesAPI);
+    console.log(upv.data);
+    setUpvotes(upv.data["upvotes"]);
+    console.log(upv.data["users_upvoted"]);
+    upv.data["users_upvoted"].includes(loggeduser)
+      ? setUpvoted(true)
+      : setUpvoted(false);
+    //setDownvotes(upvotes.data["downvotes"]);
+    console.log(kit);
+  }
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(API);
-      setKit(JSON.parse(response.data["kit"]));
-      const upv = await axios.get(upvotesAPI);
-      console.log(upv.data);
-      setUpvotes(upv.data["upvotes"]);
-      console.log(upv.data["users_upvoted"]);
-      upv.data["users_upvoted"].includes(loggeduser)
-        ? setUpvoted(true)
-        : setUpvoted(false);
-      //setDownvotes(upvotes.data["downvotes"]);
-      console.log(kit);
-    }
     fetchData();
-  }, [slug]);
+  }, [slug, loggeduser]);
 
   useEffect(() => {
     async function fetchData() {
@@ -53,7 +53,7 @@ export default function KitPage() {
       setLoggeduser(response.data["user_id"]);
     }
     fetchData();
-  }, [slug,upvotes,upvoted]);
+  }, [slug, upvotes, upvoted]);
 
   return (
     <div>
@@ -73,7 +73,10 @@ export default function KitPage() {
                   </h1>
                 </div>
                 <div>
-                  <p style={{}} className="py-2 text-base leading-relaxed text-gray-700">
+                  <p
+                    style={{}}
+                    className="py-2 text-base leading-relaxed text-gray-700"
+                  >
                     <ReactMarkdown>
                       {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
                     </ReactMarkdown>
@@ -153,6 +156,7 @@ export default function KitPage() {
                               .get(prodURL + "/api/up/" + kit["id"])
                               .then(() => {
                                 setUpvoted(!upvoted);
+                                fetchData();
                               });
                           }}
                         >
@@ -184,6 +188,7 @@ export default function KitPage() {
                               .get(prodURL + "/api/up/" + kit["id"])
                               .then(() => {
                                 setUpvoted(!upvoted);
+                                fetchData();
                               });
                           }}
                         >
