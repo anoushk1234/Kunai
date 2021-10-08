@@ -45,7 +45,7 @@ export default function KitPage() {
       console.log(kit);
     }
     fetchData();
-  }, [slug, loggeduser,hasupvoted]);
+  }, [slug, loggeduser, hasupvoted]);
 
   useEffect(() => {
     async function fetchData() {
@@ -54,6 +54,19 @@ export default function KitPage() {
     }
     fetchData();
   }, [slug]);
+
+  useEffect(() => {
+    axios
+      .get(upvotesAPI)
+      .then((setupv) => {
+        setupv.data["users_upvoted"].includes(loggeduser)
+          ? setHasupvoted(true)
+          : setHasupvoted(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggeduser]);
 
   return (
     <div>
@@ -73,7 +86,10 @@ export default function KitPage() {
                   </h1>
                 </div>
                 <div>
-                  <p style={{}} className="py-2 text-base leading-relaxed text-gray-700">
+                  <p
+                    style={{}}
+                    className="py-2 text-base leading-relaxed text-gray-700"
+                  >
                     <ReactMarkdown>
                       {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
                     </ReactMarkdown>
