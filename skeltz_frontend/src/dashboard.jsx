@@ -356,7 +356,7 @@ export default function Dashboard({ passData }) {
                               type="button"
                               onClick={() => {
                                 axios
-                                  .get(prodURL + "/api/deletekit/" + index)
+                                  .get(prodURL + "/api/deletekit/" + JSON.parse(item)["id"])
                                   .then(() => {
                                     window.alert("Kit deleted");
                                     //window.location.href = prodURL + "#/";
