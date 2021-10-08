@@ -70,6 +70,17 @@ export default function KitPage() {
 
   return (
     <div>
+      <head>
+        <style>
+          {`
+            a {
+              text-decoration: underline;
+              text-decoration-color: black;
+              font-weight: bold;
+            }
+          `}
+        </style>
+      </head>
       <header>
         <NavbarPrivate setPassData={setPassData} />
       </header>
@@ -86,10 +97,7 @@ export default function KitPage() {
                   </h1>
                 </div>
                 <div>
-                  <p
-                    style={{}}
-                    className="py-2 text-base leading-relaxed text-gray-700"
-                  >
+                  <p className="py-2 text-base leading-relaxed text-gray-700">
                     <ReactMarkdown>
                       {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
                     </ReactMarkdown>
