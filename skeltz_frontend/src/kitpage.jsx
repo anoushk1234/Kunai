@@ -96,7 +96,7 @@ export default function KitPage() {
                       </h1>
                     </div>
                   </div>
-                  <div className="flex flex-row align-middle">
+                  <div className="flex flex-row">
                     {kit["user_id"] === loggeduser ? (
                       <button
                         type="button"
@@ -132,7 +132,8 @@ export default function KitPage() {
                     )}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 flex"
+                      className="h-6 w-6 flex mr-1 ml-4"
+                      style={{ alignSelf: "center" }}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
