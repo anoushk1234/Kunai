@@ -73,7 +73,7 @@ export default function KitPage() {
       <head>
         <style>
           {`
-            a {
+           #markdown-container a {
               text-decoration: underline;
               text-decoration-color: black;
               font-weight: bold;
@@ -97,7 +97,9 @@ export default function KitPage() {
                   </h1>
                 </div>
                 <div>
-                  <p className="py-2 text-base leading-relaxed text-gray-700">
+                  <p
+                   id="markdown-container"
+                   className="py-2 text-base leading-relaxed text-gray-700">
                     <ReactMarkdown>
                       {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
                     </ReactMarkdown>
