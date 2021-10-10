@@ -297,24 +297,11 @@ export default function Dashboard({ passData }) {
                 category.includes(item["categories"]) ||
                 category.length === 0
               ) {
-                <Kit
-                  data={data}
-                  setData={setData}
-                  prodURL={prodURL}
-                  index={index}
-                  item={item}
-                  category={category}
-                  setCategory={setCategory}
-                  upvoted={upvoted}
-                  setUpvoted={setUpvoted}
-                  upvotes={upvotes}
-                  setUpvotes={setUpvotes}
-                  hasupvoted={hasupvoted}
-                  setHasupvoted={setHasupvoted}
-                  loggeduser={loggeduser}
-                  upvotesAPI={upvotesAPI}
-                  setUpvotesAPI={setUpvotesAPI}
-                />;
+                <div
+                className="flex flex-col justify-evenly"
+                >
+                  HEllO
+                </div>
               }
             })}
           </div>
