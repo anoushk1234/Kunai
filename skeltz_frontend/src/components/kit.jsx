@@ -27,16 +27,14 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
     axios
       .get(upvotesAPI)
       .then((setupv) => {
-        if (setupv.data["users_upvoted"] !== undefined) {
-          setupv.data["users_upvoted"].includes(loggeduser)
-            ? setHasupvoted(true)
-            : setHasupvoted(false);
-        }
+        setupv.data["users_upvoted"].includes(loggeduser)
+          ? setHasupvoted(true)
+          : setHasupvoted(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [loggeduser]);
+  }, [loggeduser, upvotesAPI]);
 
   return (
     <div className="mx-4 w-full sm:w-9/12">
