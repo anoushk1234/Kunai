@@ -58,8 +58,8 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
           </p>
         </div>
         <div className="flex justify-between">
-          <div className="flex flew-row" style={{ gap: "150%" }}>
-            <div className="relative w-12 h-12 flex justify-items-center">
+          <div className="flex flew-row justify-between ">
+            <div className="relative w-12 h-12 flex justify-evenly">
               <img
                 className="rounded-full border flex border-gray-100 shadow-sm"
                 src={item["profile_image"]}
@@ -71,7 +71,10 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
                 {item["user"]}
               </h1>
             </div>
-            <div className="flex flex-row" style={{ alignItems: "center" }}>
+            <div
+              className="flex flex-row justify-end"
+              style={{ alignItems: "center" }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 flex mr-1 ml-4"
