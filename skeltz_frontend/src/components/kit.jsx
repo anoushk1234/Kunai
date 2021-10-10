@@ -2,24 +2,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-const Kit = ({
-  data,
-  setData,
-  prodURL,
-  index,
-  item,
-  category,
-  setCategory,
-  upvoted,
-  setUpvoted,
-  loggeduser,
-  upvotesAPI,
-  setUpvotesAPI,
-}) => {
+const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
+  //const [upvotesAPI, setUpvotesAPI] = useState("");
+  const [upvoted, setUpvoted] = useState(false);
+  const [upvotes, setUpvotes] = useState(0);
+  const [hasupvoted, setHasupvoted] = useState(false);
+  const upvotesAPI = `${prodURL}/api/votes/${item["id"]}`;
+  console.log(upvotesAPI + "upvotesAPI" + item["id"]);
+
   useEffect(() => {
-    setUpvotesAPI(prodURL + "/api/votes/" + item["id"]);
-  }, [item]);
-  console.log(upvotesAPI, item, upvoted, loggeduser, "data", data);
+    axios
+      .get(upvotesAPI)
+      .then((setupv) => {
+        if (setupv.data["users_upvoted"] !== undefined) {
+          setupv.data["users_upvoted"].includes(loggeduser)
+            ? setHasupvoted(true)
+            : setHasupvoted(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggeduser, upvotesAPI]);
+
   return (
     <div className="mx-4 w-full sm:w-9/12">
       <div className="p-2 my-6 sm:p-4 bg-wKite  shadow-2xl border-4 border-black rounded-md">
@@ -82,7 +87,7 @@ const Kit = ({
                 </svg>
               </button>
               <p className="font-semibold text-black text-xl">
-                {JSON.parse(item)["upvotes"].length}
+                {item["upvotes"].length}
               </p>
               {item["user_id"] === loggeduser ? (
                 <button

@@ -20,12 +20,9 @@ export async function markdownToHtml(markdown) {
 }
 
 export default function Dashboard({ passData }) {
-  const [upvoted, setUpvoted] = useState(false);
-  const [upvotes, setUpvotes] = useState(0);
-  const [hasupvoted, setHasupvoted] = useState(false);
   const [loggeduser, setLoggeduser] = useState("");
   const [category, setCategory] = useState([]);
-  const [upvotesAPI, setUpvotesAPI] = useState("");
+
   //const [item, setItem] = useState([]);
   const prodURL = "https://kunaikit.herokuapp.com";
   //console.log("url: " + thispersondoesnotexist);
@@ -51,7 +48,7 @@ export default function Dashboard({ passData }) {
     }
 
     getTitle();
-  }, [Dashboard, upvoted, passData]);
+  }, [Dashboard, passData]);
 
   useEffect(() => {
     console.log(category);
@@ -63,19 +60,7 @@ export default function Dashboard({ passData }) {
       setLoggeduser(response.data["user_id"]);
     }
     fetchData();
-    axios
-      .get(upvotesAPI)
-      .then((setupv) => {
-        if (setupv.data["users_upvoted"] !== undefined) {
-          setupv.data["users_upvoted"].includes(loggeduser)
-            ? setHasupvoted(true)
-            : setHasupvoted(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loggeduser, upvotesAPI]);
+  }, []);
 
   return (
     <div>
@@ -293,15 +278,16 @@ export default function Dashboard({ passData }) {
           <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
             {data.map((item, index) => {
               item = JSON.parse(item);
+              console.log(
+                "item" + item + "index" + index + "category" + category
+              );
               if (
                 category.includes(item["categories"]) ||
                 category.length === 0
               ) {
-                <div
-                className="flex flex-col justify-evenly"
-                >
+                <div className="flex flex-col justify-evenly bg-gray-500">
                   HEllO
-                </div>
+                </div>;
               }
             })}
           </div>
@@ -309,4 +295,25 @@ export default function Dashboard({ passData }) {
       </body>
     </div>
   );
+}
+
+{
+  /* <Kit
+                  data={data}
+                  setData={setData}
+                  prodURL={prodURL}
+                  index={index}
+                  item={item}
+                  category={category}
+                  setCategory={setCategory}
+                  upvoted={upvoted}
+                  setUpvoted={setUpvoted}
+                  upvotes={upvotes}
+                  setUpvotes={setUpvotes}
+                  hasupvoted={hasupvoted}
+                  setHasupvoted={setHasupvoted}
+                  loggeduser={loggeduser}
+                  upvotesAPI={upvotesAPI}
+                  setUpvotesAPI={setUpvotesAPI}
+                />; */
 }
