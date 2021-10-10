@@ -13,12 +13,12 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
   useEffect(() => {
     async function fetchData() {
       const upv = await axios.get(upvotesAPI);
-    console.log(upv.data);
-    setUpvotes(upv.data["upvotes"]);
-    console.log(upv.data["users_upvoted"]);
-    upv.data["users_upvoted"].includes(loggeduser)
-      ? setUpvoted(true)
-      : setUpvoted(false);
+      console.log(upv.data);
+      setUpvotes(upv.data["upvotes"]);
+      console.log(upv.data["users_upvoted"]);
+      upv.data["users_upvoted"].includes(loggeduser)
+        ? setUpvoted(true)
+        : setUpvoted(false);
     }
     fetchData();
   }, [loggeduser, hasupvoted]);
@@ -58,7 +58,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
           </p>
         </div>
         <div className="flex justify-between">
-          <div className="flex flew-row" style={{ gap: "240%" }}>
+          <div className="flex flew-row" style={{ gap: "150%" }}>
             <div className="relative w-12 h-12 flex justify-items-center">
               <img
                 className="rounded-full border flex border-gray-100 shadow-sm"
@@ -72,6 +72,21 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               </h1>
             </div>
             <div className="flex flex-row" style={{ alignItems: "center" }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 flex mr-1 ml-4"
+                style={{ alignSelf: "center" }}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                />
+              </svg>
               {hasupvoted ? (
                 <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
                   <button
@@ -133,81 +148,6 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
                   </p>
                 </span>
               )}
-              {/* <button
-                className="flex"
-                onClick={() => {
-                  axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
-                    setUpvoted(!upvoted);
-                  });
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 11l7-7 7 7M5 19l7-7 7 7"
-                  />
-                </svg>
-              </button>
-              <p className="flex font-semibold text-black text-xl">
-                {item["upvotes"].length}
-              </p> */}
-              {/* {item["user_id"] === loggeduser ? (
-                <button
-                  className="flex"
-                  type="button"
-                  onClick={() => {
-                    axios
-                      .get(prodURL + "/api/deletekit/" + item["id"])
-                      .then(() => {
-                        setData(
-                          data.filter(
-                            (i) => JSON.parse(i)["index"] !== item["index"]
-                          )
-                        );
-                      });
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
-              ) : (
-                <></>
-              )} */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 flex mr-1 ml-4"
-                style={{ alignSelf: "center" }}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                />
-              </svg>
             </div>
           </div>
         </div>
