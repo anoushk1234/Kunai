@@ -85,7 +85,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               <p className="flex font-semibold text-black text-xl">
                 {item["upvotes"].length}
               </p>
-              {item["user_id"] === loggeduser ? (
+              {/* {item["user_id"] === loggeduser ? (
                 <button
                   className="flex"
                   type="button"
@@ -118,7 +118,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
                 </button>
               ) : (
                 <></>
-              )}
+              )} */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 flex mr-1 ml-4"
