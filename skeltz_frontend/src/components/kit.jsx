@@ -59,15 +59,15 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
         </div>
 
         <div className="flex flew-row justify-between ">
-          <div className="relative w-12 h-12 ">
+          <div className="relative w-12 h-12 flex ">
             <img
-              className="rounded-full border flex border-gray-100 shadow-sm"
+              className="rounded-full border  border-gray-100 shadow-sm"
               src={item["profile_image"]}
               alt="User Avatar"
               width={320}
               height={320}
             />
-            <h1 className="text-base ml-3 flex font-medium leading-relaxed max-w-prose text-gray-700 ">
+            <h1 className="text-base ml-3 font-medium leading-relaxed max-w-prose text-gray-700 ">
               {item["user"]}
             </h1>
           </div>
