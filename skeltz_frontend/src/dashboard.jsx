@@ -66,14 +66,16 @@ export default function Dashboard({ passData }) {
     axios
       .get(upvotesAPI)
       .then((setupv) => {
-        setupv.data["users_upvoted"].includes(loggeduser)
+        if (setupv.data !== undefined){
+          setupv.data["users_upvoted"].includes(loggeduser)
           ? setHasupvoted(true)
           : setHasupvoted(false);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [data]);
+  }, [loggeduser,upvotesAPI]);
 
   return (
     <div>
