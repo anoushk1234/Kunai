@@ -39,27 +39,22 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
           }}
         >
           <p className="py-2 text-base leading-relaxed text-gray-700 ">
-            {/*{ReactHtmlParser(
-                  JSON.parse(item)["markdown_data"].substring(0, 200)
-                )}*/}
             <ReactMarkdown>
               {item["markdown_data"].substring(0, 210) + "..."}
             </ReactMarkdown>
           </p>
         </div>
         <div className="flex justify-between">
-          <div className="flex flew-row gap-4">
-            <div className="relative w-12 h-12">
+          <div className="flex flew-row" style={{ gap: "310%" }}>
+            <div className="relative w-12 h-12 flex justify-items-center">
               <img
-                className="rounded-full border border-gray-100 shadow-sm"
+                className="rounded-full border flex border-gray-100 shadow-sm"
                 src={item["profile_image"]}
                 alt="User Avatar"
                 width={320}
                 height={320}
               />
-            </div>
-            <div>
-              <h1 className="text-base font-medium leading-relaxed max-w-prose text-gray-700 ">
+              <h1 className="text-base ml-3 flex font-medium leading-relaxed max-w-prose text-gray-700 ">
                 {item["user"]}
               </h1>
             </div>
