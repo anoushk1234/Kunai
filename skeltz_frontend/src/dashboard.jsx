@@ -294,7 +294,7 @@ export default function Dashboard({ passData }) {
             {data.map((item, index) => {
               item = JSON.parse(item);
               if (
-                category.includes(JSON.parse(item)["categories"]) ||
+                category.includes(item["categories"]) ||
                 category.length === 0
               ) {
                 <Kit
