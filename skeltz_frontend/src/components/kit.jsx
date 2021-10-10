@@ -19,7 +19,7 @@ const Kit = ({
   useEffect(() => {
     setUpvotesAPI(prodURL + "/api/votes/" + item["id"]);
   }, [item]);
-
+  console.log(upvotesAPI, item, upvoted, loggeduser, "data", data);
   return (
     <div className="mx-4 w-full sm:w-9/12">
       <div className="p-2 my-6 sm:p-4 bg-wKite  shadow-2xl border-4 border-black rounded-md">
