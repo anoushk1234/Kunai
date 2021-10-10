@@ -131,7 +131,7 @@ export default function KitPage() {
                             .get(prodURL + "/api/deletekit/" + slug)
                             .then(() => {
                               window.alert("Kit deleted");
-                              window.location.href = prodURL + "#/";
+                              window.location.href = prodURL + "#/dashboard";
                             })
                             .catch((err) => {
                               window.alert(err);
