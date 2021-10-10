@@ -59,7 +59,73 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               </h1>
             </div>
             <div className="flex flex-row" style={{ alignItems: "center" }}>
-              <button
+
+            {hasupvoted ? (
+                      <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
+                        <button
+                          className="flex"
+                          onClick={() => {
+                            axios
+                              .get(prodURL + "/api/up/" + item["id"])
+                              .then(() => {
+                                setUpvoted(!upvoted);
+                                setHasupvoted(!hasupvoted);
+                              });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 flex"
+                            fill="white"
+                            viewBox="0 0 24 24"
+                            stroke="black"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                            />
+                          </svg>
+                        </button>
+                        <p className="flex font-semibold text-black text-xl">
+                          {upvotes}
+                        </p>
+                      </span>
+                    ) : (
+                      <span className="flex mx-4 bg-black rounded-lg w-17 p-2 border-2 border-black flex-row justify-around">
+                        <button
+                          className="flex"
+                          onClick={() => {
+                            axios
+                              .get(prodURL + "/api/up/" + item["id"])
+                              .then(() => {
+                                setUpvoted(!upvoted);
+                                setHasupvoted(!hasupvoted);
+                              });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 flex"
+                            fill="black"
+                            viewBox="0 0 24 24"
+                            stroke="white"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                            />
+                          </svg>
+                        </button>
+                        <p className="flex font-semibold text-white text-xl">
+                          {upvotes}
+                        </p>
+                      </span>
+                    )}
+              {/* <button
                 className="flex"
                 onClick={() => {
                   axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
@@ -84,7 +150,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               </button>
               <p className="flex font-semibold text-black text-xl">
                 {item["upvotes"].length}
-              </p>
+              </p> */}
               {/* {item["user_id"] === loggeduser ? (
                 <button
                   className="flex"
