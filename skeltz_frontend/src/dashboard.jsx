@@ -279,15 +279,27 @@ export default function Dashboard({ passData }) {
             {data.map((item, index) => {
               item = JSON.parse(item);
               console.log(
-                "item" + item + "index" + index + "category" + category
+                "item" +
+                  JSON.stringify(item) +
+                  "index" +
+                  index +
+                  "category" +
+                  category
               );
               if (
                 category.includes(item["categories"]) ||
                 category.length === 0
               ) {
-                <div className="flex flex-col justify-evenly bg-gray-500">
-                  HEllO
-                </div>;
+                console.log("inside");
+                return (
+                  <Kit
+                    data={data}
+                    setData={setData}
+                    prodURL={prodURL}
+                    item={item}
+                    loggeduser={loggeduser}
+                  />
+                );
               }
             })}
           </div>
