@@ -292,6 +292,7 @@ export default function Dashboard({ passData }) {
           </div>
           <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
             {data.map((item, index) => {
+              item = JSON.parse(item);
               if (
                 category.includes(JSON.parse(item)["categories"]) ||
                 category.length === 0
@@ -301,7 +302,7 @@ export default function Dashboard({ passData }) {
                   setData={setData}
                   prodURL={prodURL}
                   index={index}
-                  item={JSON.parse(item)}
+                  item={item}
                   category={category}
                   setCategory={setCategory}
                   upvoted={upvoted}
