@@ -45,7 +45,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
           </p>
         </div>
         <div className="flex justify-between">
-          <div className="flex flew-row" style={{ gap: "310%" }}>
+          <div className="flex flew-row" style={{ gap: "240%" }}>
             <div className="relative w-12 h-12 flex justify-items-center">
               <img
                 className="rounded-full border flex border-gray-100 shadow-sm"
