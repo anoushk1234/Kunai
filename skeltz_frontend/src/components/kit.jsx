@@ -11,6 +11,19 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
   console.log(upvotesAPI + "upvotesAPI" + item["id"]);
 
   useEffect(() => {
+    async function fetchData() {
+      const upv = await axios.get(upvotesAPI);
+    console.log(upv.data);
+    setUpvotes(upv.data["upvotes"]);
+    console.log(upv.data["users_upvoted"]);
+    upv.data["users_upvoted"].includes(loggeduser)
+      ? setUpvoted(true)
+      : setUpvoted(false);
+    }
+    fetchData();
+  }, [loggeduser, hasupvoted]);
+
+  useEffect(() => {
     axios
       .get(upvotesAPI)
       .then((setupv) => {
@@ -23,7 +36,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [loggeduser, upvotesAPI]);
+  }, [loggeduser]);
 
   return (
     <div className="mx-4 w-full sm:w-9/12">
@@ -59,72 +72,67 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               </h1>
             </div>
             <div className="flex flex-row" style={{ alignItems: "center" }}>
-
-            {hasupvoted ? (
-                      <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
-                        <button
-                          className="flex"
-                          onClick={() => {
-                            axios
-                              .get(prodURL + "/api/up/" + item["id"])
-                              .then(() => {
-                                setUpvoted(!upvoted);
-                                setHasupvoted(!hasupvoted);
-                              });
-                          }}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 flex"
-                            fill="white"
-                            viewBox="0 0 24 24"
-                            stroke="black"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
-                            />
-                          </svg>
-                        </button>
-                        <p className="flex font-semibold text-black text-xl">
-                          {upvotes}
-                        </p>
-                      </span>
-                    ) : (
-                      <span className="flex mx-4 bg-black rounded-lg w-17 p-2 border-2 border-black flex-row justify-around">
-                        <button
-                          className="flex"
-                          onClick={() => {
-                            axios
-                              .get(prodURL + "/api/up/" + item["id"])
-                              .then(() => {
-                                setUpvoted(!upvoted);
-                                setHasupvoted(!hasupvoted);
-                              });
-                          }}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 flex"
-                            fill="black"
-                            viewBox="0 0 24 24"
-                            stroke="white"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M5 11l7-7 7 7M5 19l7-7 7 7"
-                            />
-                          </svg>
-                        </button>
-                        <p className="flex font-semibold text-white text-xl">
-                          {upvotes}
-                        </p>
-                      </span>
-                    )}
+              {hasupvoted ? (
+                <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
+                  <button
+                    className="flex"
+                    onClick={() => {
+                      axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
+                        setUpvoted(!upvoted);
+                        setHasupvoted(!hasupvoted);
+                      });
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 flex"
+                      fill="white"
+                      viewBox="0 0 24 24"
+                      stroke="black"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                      />
+                    </svg>
+                  </button>
+                  <p className="flex font-semibold text-black text-xl">
+                    {upvotes}
+                  </p>
+                </span>
+              ) : (
+                <span className="flex mx-4 bg-black rounded-lg w-17 p-2 border-2 border-black flex-row justify-around">
+                  <button
+                    className="flex"
+                    onClick={() => {
+                      axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
+                        setUpvoted(!upvoted);
+                        setHasupvoted(!hasupvoted);
+                      });
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 flex"
+                      fill="black"
+                      viewBox="0 0 24 24"
+                      stroke="white"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                      />
+                    </svg>
+                  </button>
+                  <p className="flex font-semibold text-white text-xl">
+                    {upvotes}
+                  </p>
+                </span>
+              )}
               {/* <button
                 className="flex"
                 onClick={() => {
@@ -188,7 +196,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 flex mr-1 ml-4"
-                style={{ alignSelf: "center" }} 
+                style={{ alignSelf: "center" }}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
