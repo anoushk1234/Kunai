@@ -31,7 +31,7 @@ export default function Dashboard({ passData }) {
 
   useEffect(() => {
     async function getTitle() {
-      const res = await axios.get("https://kunaikit.herokuapp.com/api/getkit/");
+      const res = await axios.get(prodURL+"/api/getkit/");
       console.log(res.data["items"].length);
       //setData(res.data["items"]);
 
