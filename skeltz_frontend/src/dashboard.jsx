@@ -1,23 +1,17 @@
 import React from "react";
 // import Image from "Image";
-import NavbarPrivate from "./components/NavbarPrivate";
+//import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
-import { remark } from "remark";
+//import { remark } from "remark";
 //import cookieCutter from "cookie-cutter";
-import html from "remark-html";
+//import html from "remark-html";
 import Kit from "./components/kit";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 //import matter from "gray-matter";
 import { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-// import { cookieCutter } from 'cookie-cutter';
-import thispersondoesnotexist from "./thispersondoesnotexist.jpg";
+// import ReactMarkdown from "react-markdown";
+// // import { cookieCutter } from 'cookie-cutter';
 
-export async function markdownToHtml(markdown) {
-  const result = await remark().use(html).process(markdown);
-  console.log(result.toString());
-  return result.toString();
-}
 
 export default function Dashboard({ passData }) {
   const [loggeduser, setLoggeduser] = useState("");
@@ -278,19 +272,19 @@ export default function Dashboard({ passData }) {
           <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
             {data.map((item, index) => {
               item = JSON.parse(item);
-              console.log(
-                "item" +
-                  JSON.stringify(item) +
-                  "index" +
-                  index +
-                  "category" +
-                  category
-              );
+              // console.log(
+              //   "item" +
+              //     JSON.stringify(item) +
+              //     "index" +
+              //     index +
+              //     "category" +
+              //     category
+              // );
               if (
                 category.includes(item["categories"]) ||
                 category.length === 0
               ) {
-                console.log("inside");
+                //console.log("inside");
                 return (
                   <Kit
                     data={data}
@@ -309,23 +303,4 @@ export default function Dashboard({ passData }) {
   );
 }
 
-{
-  /* <Kit
-                  data={data}
-                  setData={setData}
-                  prodURL={prodURL}
-                  index={index}
-                  item={item}
-                  category={category}
-                  setCategory={setCategory}
-                  upvoted={upvoted}
-                  setUpvoted={setUpvoted}
-                  upvotes={upvotes}
-                  setUpvotes={setUpvotes}
-                  hasupvoted={hasupvoted}
-                  setHasupvoted={setHasupvoted}
-                  loggeduser={loggeduser}
-                  upvotesAPI={upvotesAPI}
-                  setUpvotesAPI={setUpvotesAPI}
-                />; */
-}
+
