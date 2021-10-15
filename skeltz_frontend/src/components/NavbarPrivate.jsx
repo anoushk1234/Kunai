@@ -11,7 +11,7 @@ export default function NavbarPublic({ setPassData }) {
         <div className="mx-3">
           <Link to="/dashboard">
             <a>
-              <img height="auto" width="80px" src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
+              <img className="h-auto w-20" src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
             </a>
           </Link>
         </div>
