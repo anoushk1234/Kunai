@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 // import ReactMarkdown from "react-markdown";
 // // import { cookieCutter } from 'cookie-cutter';
 
-
 export default function Dashboard({ passData }) {
   const [loggeduser, setLoggeduser] = useState("");
   const [category, setCategory] = useState([]);
@@ -25,7 +24,7 @@ export default function Dashboard({ passData }) {
 
   useEffect(() => {
     async function getTitle() {
-      const res = await axios.get(prodURL+"/api/getkit/");
+      const res = await axios.get(prodURL + "/api/getkit/");
       console.log(res.data["items"].length);
       //setData(res.data["items"]);
 
@@ -52,6 +51,12 @@ export default function Dashboard({ passData }) {
     async function fetchData() {
       const response = await axios.get(prodURL + "/auth/userdetails/");
       setLoggeduser(response.data["user_id"]);
+      if (
+        response.status === 200 &&
+        !window.location.hash.endsWith("#/dashboard")
+      ) {
+        window.location.href = prodURL + "/#/dashboard";
+      }
     }
     fetchData();
   }, []);
@@ -293,5 +298,3 @@ export default function Dashboard({ passData }) {
     </div>
   );
 }
-
-

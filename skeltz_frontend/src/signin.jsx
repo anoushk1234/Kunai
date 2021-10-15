@@ -9,9 +9,10 @@ export default function SignIn() {
         <div className="flex flex-row justify-between">
           <Link to="/">
             <a>
-              <h1 className="font-bold tracking-tighter text-black dark:text-white text-5xl title-font">
-                Skeltz
-              </h1>
+              <img
+                className="h-auto w-20"
+                src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png"
+              />
             </a>
           </Link>
           <ThemeSwitch />

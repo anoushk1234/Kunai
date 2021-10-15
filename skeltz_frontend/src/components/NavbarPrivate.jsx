@@ -11,14 +11,20 @@ export default function NavbarPublic({ setPassData }) {
         <div className="mx-3">
           <Link to="/dashboard">
             <a>
-              <img className="h-auto w-20" src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
+              <img
+                className="h-auto w-20"
+                src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png"
+              />
             </a>
           </Link>
         </div>
 
         <div>
           <div>
-            <div className="flex flex-row gap-4">
+            <div
+              style={{ alignItems: "center" }}
+              className="flex flex-row gap-4"
+            >
               <SearchBar setKit={setPassData} />
               <ThemeSwitch />
               <Link to="/account">

@@ -90,9 +90,18 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
                 <button
                   className="flex"
                   onClick={() => {
-                    axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
-                      // setUpvoted(!upvoted);
-                      setHasupvoted(!hasupvoted);
+                    axios.get(prodURL + "/api/getuser/").then((res) => {
+                      if (res.status === 200) {
+                        axios
+                          .get(prodURL + "/api/up/" + item["id"])
+                          .then(() => {
+                            // setUpvoted(!upvoted);
+
+                            setHasupvoted(!hasupvoted);
+                          });
+                      } else {
+                        window.location.href = prodURL + "/#/signin";
+                      }
                     });
                   }}
                 >
