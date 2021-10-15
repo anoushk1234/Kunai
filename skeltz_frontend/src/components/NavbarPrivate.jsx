@@ -4,16 +4,14 @@ import ThemeSwitch from "./ThemeSwitch";
 import SearchBar from "./searchbar";
 import axios from "axios";
 export default function NavbarPublic({ setPassData }) {
-  const prodURL="https://kunaikit.herokuapp.com/"
+  const prodURL = "https://kunaikit.herokuapp.com/";
   return (
     <div className="mt-6 mb-6">
       <div className="flex justify-between">
         <div className="mx-3">
           <Link to="/dashboard">
             <a>
-              <h1 className="font-bold tracking-tighter text-black dark:text-white text-5xl title-font">
-                Skeltz
-              </h1>
+              <img src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
             </a>
           </Link>
         </div>
@@ -48,9 +46,14 @@ export default function NavbarPublic({ setPassData }) {
                 </button>
               </Link>
               <button
-              class="mx-4"
+                class="mx-4"
                 onClick={() => {
-                  axios.get(prodURL+'accounts/logout');
+                  axios.get(prodURL + "accounts/logout").then((res) => {
+                    window.location.href = window.location.href.replace(
+                      window.location.hash,
+                      "/#/"
+                    );
+                  });
                 }}
               >
                 <svg
