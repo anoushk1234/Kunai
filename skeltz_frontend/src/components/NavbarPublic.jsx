@@ -10,7 +10,7 @@ export default function NavbarPublic({setPassData}) {
         <div>
           <Link to="/">
             <a>
-              <img src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
+              <img height="auto" width="80px" src="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
             </a>
           </Link>
         </div>
