@@ -272,19 +272,10 @@ export default function Dashboard({ passData }) {
           <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
             {data.map((item, index) => {
               item = JSON.parse(item);
-              // console.log(
-              //   "item" +
-              //     JSON.stringify(item) +
-              //     "index" +
-              //     index +
-              //     "category" +
-              //     category
-              // );
               if (
                 category.includes(item["categories"]) ||
                 category.length === 0
               ) {
-                //console.log("inside");
                 return (
                   <Kit
                     data={data}

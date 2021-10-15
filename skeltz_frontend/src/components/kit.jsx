@@ -11,7 +11,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
   const upvotesAPI = `${prodURL}/api/votes/${item["id"]}`;
   //console.log(upvotesAPI + "upvotesAPI" + item["id"]);
   const isdashboard = window.location.href.includes("/dashboard");
-
+  const kitRoute = prodURL + "/#/kit/" + item["id"];
   useEffect(() => {
     async function fetchData() {
       const upv = await axios.get(upvotesAPI);
@@ -41,17 +41,21 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
   return (
     <div className="mx-4 w-full sm:w-9/12">
       <div className="p-2 my-6 sm:p-4 bg-wKite  shadow-2xl border-4 border-black rounded-md">
-        <div>
+        <div
+          onClick={() => {
+            window.location.href = kitRoute;
+          }}
+        >
           <h1 className="mb-2 text-2xl sm:text-3xl font-semibold leading-none tracking-tighter text-black  title-font">
             {item["title"]}
           </h1>
         </div>
         <div
           onClick={() => {
-            window.location.href = prodURL + "/#/kit/" + item["id"];
+            window.location.href = kitRoute;
           }}
         >
-          <p className="py-2 text-base leading-relaxed text-gray-700 ">
+          <p className="py-2 pointer-events-none text-base leading-relaxed text-gray-700 ">
             <ReactMarkdown>
               {item["markdown_data"].substring(0, 210) + "..."}
             </ReactMarkdown>
@@ -76,8 +80,11 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
             className="flex flex-row justify-end"
             style={{ alignItems: "center" }}
           >
-            {/* <ShareModal/> */}
-            
+            <ShareModal
+              url={prodURL + "/#/kit/" + item["id"]}
+              title={item["title"]}
+            />
+
             {hasupvoted && isdashboard ? (
               <span className="flex mx-4  rounded-lg w-17 p-2 bg-white border-2  border-black flex-row justify-around">
                 <button
