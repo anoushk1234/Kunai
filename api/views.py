@@ -28,7 +28,7 @@ def health(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_upvotes_and_downvotes(request, kit_id):
-    users_upvoted = Kit.objects.filter(id=kit_id).values('user_id')
+    users_upvoted = Kit.objects.filter(id=kit_id).values('upvotes')
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
     print(users_upvoted)
     print(upvotes)
@@ -43,7 +43,7 @@ def get_kit_upvotes_and_downvotes(request, kit_id):
 def upvote_this_kit(request, kit_id):
     kit = Kit.objects.get(id=kit_id)
     user = request.user
-    print()
+    print(user)
     if user in kit.upvotes.all():
         kit.upvotes.remove(user)
         print("removed upvote")
