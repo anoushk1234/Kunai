@@ -44,12 +44,12 @@ def upvote_this_kit(request, kit_id):
     kit = Kit.objects.get(id=kit_id)
     user = request.user
     print(user)
-    if user in kit.upvotes.all():
-        kit.upvotes.remove(user)
+    if user.id in kit.upvotes.all():
+        kit.upvotes.remove(user.id)
         print("removed upvote")
         print(kit.upvotes.all())
     else:
-        kit.upvotes.add(user)
+        kit.upvotes.add(user.id)
         print("added upvote")
         print(kit.upvotes.all())
     kit.save()
