@@ -42,7 +42,7 @@ def get_kit_upvotes_and_downvotes(request, kit_id):
 @permission_classes([IsAuthenticated])
 def upvote_this_kit(request, kit_id):
     kit = Kit.objects.get(id=kit_id)
-    user = request.user.id
+    user = request.user
     print(user)
     if user in kit.upvotes.all():
         kit.upvotes.remove(user)
