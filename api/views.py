@@ -28,28 +28,28 @@ def health(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_kit_upvotes_and_downvotes(request, kit_id):
-    users_upvoted = Kit.objects.filter(id=kit_id).values('upvotes')
+    users_upvoted = Kit.objects.filter(id=kit_id).values_list('upvotes', flat=True)
     upvotes = Kit.objects.filter(id=kit_id).values('upvotes').count()
     print(users_upvoted)
     print(upvotes)
-    users_upvoted = list(users_upvoted.values_list('user_id', flat=True))
+    #users_upvoted = list(users_upvoted.values_list('user_id', flat=True))
     print(users_upvoted)
     #downvotes = Kit.objects.filter(id=kit_id).values('downvotes').count()
-    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": json.dumps(users_upvoted)})
+    return JsonResponse({"upvotes": str(upvotes), "users_upvoted": json.dumps(list(users_upvoted))})
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def upvote_this_kit(request, kit_id):
     kit = Kit.objects.get(id=kit_id)
-    user = request.user
+    user = request.user.id
     print(user)
-    if user.id in kit.upvotes.all():
-        kit.upvotes.remove(user.id)
+    if user in kit.upvotes.all():
+        kit.upvotes.remove(user)
         print("removed upvote")
         print(kit.upvotes.all())
     else:
-        kit.upvotes.add(user.id)
+        kit.upvotes.add(user)
         print("added upvote")
         print(kit.upvotes.all())
     kit.save()
