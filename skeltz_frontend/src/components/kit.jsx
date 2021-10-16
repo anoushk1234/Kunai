@@ -130,7 +130,7 @@ const Kit = ({ data, setData, prodURL, item, loggeduser }) => {
                   className="flex"
                   onClick={() => {
                     axios.get(prodURL + "/api/up/" + item["id"]).then(() => {
-                      setUpvoted(!upvoted);
+                      //setUpvoted(!upvoted);
                       setHasupvoted(!hasupvoted);
                     });
                   }}

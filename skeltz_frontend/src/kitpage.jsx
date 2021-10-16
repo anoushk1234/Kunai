@@ -67,7 +67,7 @@ export default function KitPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [loggeduser]);
+  }, [loggeduser,upvotesAPI]);
 
   return (
     <div>
@@ -170,7 +170,7 @@ export default function KitPage() {
                             axios
                               .get(prodURL + "/api/up/" + kit["id"])
                               .then(() => {
-                                setUpvoted(!upvoted);
+                                //setUpvoted(!upvoted);
                                 setHasupvoted(!hasupvoted);
                               });
                           }}
@@ -202,7 +202,7 @@ export default function KitPage() {
                             axios
                               .get(prodURL + "/api/up/" + kit["id"])
                               .then(() => {
-                                setUpvoted(!upvoted);
+                                //setUpvoted(!upvoted);
                                 setHasupvoted(!hasupvoted);
                               });
                           }}
