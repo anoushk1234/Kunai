@@ -5,13 +5,14 @@ import React, { useState } from "react";
 import Dashboard from "./dashboard";
 function PrivateDashboard() {
   const [passData, setPassData] = useState([]);
+  const [isTransformed, setIsTransformed] = useState(false);
   return (
     <div>
       <header className="mx-4 sm:mx-auto sm:max-w-5xl">
-        <NavbarPrivate setPassData={setPassData} />
+        <NavbarPrivate isTransformed={isTransformed} setIsTransformed={setIsTransformed} setPassData={setPassData} />
       </header>
       <body>
-        <Dashboard passData={passData} />
+        <Dashboard isTransformed={isTransformed} setIsTransformed={setIsTransformed} passData={passData} setPassData={setPassData} />
       </body>
     </div>
   );

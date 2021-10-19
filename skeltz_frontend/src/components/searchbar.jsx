@@ -34,7 +34,7 @@ const SearchBar = ({ setKit }) => {
   }, [query]);
 
   return (
-    <div className="inline-flex flex-col justify-center">
+    <div className="hidden md:inline-flex pr-4 flex-col justify-center">
       <div class="pt-2 relative mx-auto text-gray-600">
         <input
           class="border-4 border-black bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"

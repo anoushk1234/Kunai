@@ -12,7 +12,11 @@ import { useState, useEffect } from "react";
 // import ReactMarkdown from "react-markdown";
 // // import { cookieCutter } from 'cookie-cutter';
 
-export default function Dashboard({ passData }) {
+export default function Dashboard({
+  passData,
+  isTransformed,
+  setIsTransformed,
+}) {
   const [loggeduser, setLoggeduser] = useState("");
   const [category, setCategory] = useState([]);
 
@@ -64,9 +68,17 @@ export default function Dashboard({ passData }) {
   return (
     <div>
       <body>
-        <div className="my-4 flex flex-row justify-between  border-4 border-white">
-          <div>
-            <div className="px-4 py-6 flex flex-col justify-evenly border-4 border-white">
+        <div className="my-4 flex flex-1 flex-row justify-evenly border-4 border-transparent">
+          {/* <!--- mobile menu --> */}
+          <div
+            class={
+              isTransformed
+                ? "translate-x-0 duration-200 ease-in-out opacity-100 bg-white md:bg-transparent w-screen md:w-auto md:-left-0 md:absolute h-screen md:h-auto z-10"
+                : "-translate-x-full ease-in-out duration-200 bg-transparent z-10 opacity-0"
+            }
+            className="absolute inset-y-xl md:-left-20 transform md:relative  md:translate-x-0 -translate-x-full transition duration-200 ease-in-out"
+          >
+            <div className="px-4 py-6 md:flex flex-col justify-evenly border-4 border-white">
               <h3 className="my-1 flow-root">
                 <button
                   type="button"
@@ -274,7 +286,7 @@ export default function Dashboard({ passData }) {
               </div>
             </div>
           </div>
-          <div className=" ml-24 flex flex-1 flex-col justify-evenly ">
+          <div className="absolute md:relative md:max-w-xl flex flex-1 flex-col justify-evenly ">
             {data.map((item, index) => {
               item = JSON.parse(item);
               if (
