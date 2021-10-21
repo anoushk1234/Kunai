@@ -74,11 +74,11 @@ export default function Dashboard({
             class={
               isTransformed
                 ? "translate-x-0 duration-200 ease-in-out opacity-100 bg-white md:bg-transparent w-screen md:w-auto md:-left-0 md:absolute h-screen md:h-auto z-10"
-                : "-translate-x-full ease-in-out duration-200 bg-transparent z-10 opacity-0"
+                : "-translate-x-full absolute ease-in-out duration-200 bg-transparent z-10  opacity-0 md:opacity-100"
             }
             className="absolute inset-y-xl md:-left-20 transform md:relative  md:translate-x-0 -translate-x-full transition duration-200 ease-in-out"
           >
-            <div className="px-4 py-6 md:flex flex-col justify-evenly border-4 border-white">
+            <div className="px-4 py-6 md:flex flex-col justify-evenly border-4 border-transparent">
               <h3 className="my-1 flow-root">
                 <button
                   type="button"
