@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 //import Cookies from "js-cookie";
+import { Helmet } from "react-helmet";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import Dashboard from "./dashboard";
@@ -111,6 +112,17 @@ export default function KitPage() {
                       remarkPlugins={[remarkGfm]}
                       rehypePlugins={[rehypeRaw]}
                     />
+                    <Helmet>
+                      <title>{kit["title"]+" - Skeltz"}</title>
+                      <meta id="meta-description" name="description" content={kit["markdown_data"]} />
+                      <meta id="meta-og-title" property="og:title" content={kit["title"]} />
+                      <meta id="meta-og-description" property="og:description" content={kit["markdown_data"]} />
+                      <meta id="meta-og-image" property="og:image" content="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
+                      <meta id="meta-og-url" property="og:url" content={window.location.href} />
+                      <meta id="meta-og-type" property="og:type" content="website" />
+                      <meta id="meta-og-site-name" property="og:site_name" content="Skeltz" />
+                      <meta id="twitter" name="twitter:card" content="summary_large_image" />
+                      </Helmet>
                   </p>
                 </div>
                 <div className="flex justify-between">
