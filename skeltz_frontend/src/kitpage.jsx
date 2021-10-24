@@ -3,7 +3,8 @@ import NavbarPrivate from "./components/NavbarPrivate";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import Cookies from "js-cookie";
+//import Cookies from "js-cookie";
+import remarkGfm from "remark-gfm";
 import Dashboard from "./dashboard";
 import ShareModal from "./components/sharemodal";
 //import Confetti from "./components/itsconfetti";
@@ -67,7 +68,7 @@ export default function KitPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [loggeduser,upvotesAPI]);
+  }, [loggeduser, upvotesAPI]);
 
   return (
     <div>
@@ -102,9 +103,12 @@ export default function KitPage() {
                     id="markdown-container"
                     className="py-2 text-base leading-relaxed text-gray-700"
                   >
-                    <ReactMarkdown>
-                      {kit["markdown_data"] ? kit["markdown_data"] : "Loading"}
-                    </ReactMarkdown>
+                    <ReactMarkdown
+                      children={
+                        kit["markdown_data"] ? kit["markdown_data"] : "Loading"
+                      }
+                      remarkPlugins={[remarkGfm]}
+                    />
                   </p>
                 </div>
                 <div className="flex justify-between">

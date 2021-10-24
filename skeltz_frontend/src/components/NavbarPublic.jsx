@@ -20,9 +20,6 @@ export default function NavbarPublic({setPassData}) {
             <div>
               <SearchBar setKit={setPassData} />
             </div>
-            <div>
-              <ThemeSwitch />
-            </div>
 
             <div>
               <Link to="/signin">
