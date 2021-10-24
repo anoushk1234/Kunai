@@ -133,6 +133,11 @@ export default function KitPage() {
                         property="og:description"
                         content={kit["markdown_data"]}
                       />
+                       <meta
+                        id="twitter"
+                        name="twitter:card"
+                        content="summary"
+                      />
                       <meta
                         id="meta-og-image"
                         property="og:image"
@@ -153,11 +158,7 @@ export default function KitPage() {
                         property="og:site_name"
                         content="Skeltz.xyz"
                       />
-                      <meta
-                        id="twitter"
-                        name="twitter:card"
-                        content="summary_large_image"
-                      />
+                     
                       <meta
                         id="twitter"
                         name="twitter:image"
@@ -176,7 +177,7 @@ export default function KitPage() {
                       <meta
                         id="twitter"
                         name="twitter:creator"
-                        content={kit["user"]}
+                        content={"@"+kit["user"]}
                       />
                       <meta
                         id="twitter"
