@@ -113,16 +113,77 @@ export default function KitPage() {
                       rehypePlugins={[rehypeRaw]}
                     />
                     <Helmet>
-                      <title>{kit["title"]+" - Skeltz"}</title>
-                      <meta id="meta-description" name="description" content={kit["markdown_data"]} />
-                      <meta id="meta-og-title" property="og:title" content={kit["title"]} />
-                      <meta id="meta-og-description" property="og:description" content={kit["markdown_data"]} />
-                      <meta id="meta-og-image" property="og:image" content="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png" />
-                      <meta id="meta-og-url" property="og:url" content={window.location.href} />
-                      <meta id="meta-og-type" property="og:type" content="website" />
-                      <meta id="meta-og-site-name" property="og:site_name" content="Skeltz" />
-                      <meta id="twitter" name="twitter:card" content="summary_large_image" />
-                      </Helmet>
+                      <title>{kit["title"] + " - Skeltz"}</title>
+                      <link
+                        rel="icon"
+                        href="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png"
+                      />
+                      <meta
+                        id="meta-description"
+                        name="description"
+                        content="Create and find learning starter kits"
+                      />
+                      <meta
+                        id="meta-og-title"
+                        property="og:title"
+                        content={kit["title"]}
+                      />
+                      <meta
+                        id="meta-og-description"
+                        property="og:description"
+                        content={kit["markdown_data"]}
+                      />
+                      <meta
+                        id="meta-og-image"
+                        property="og:image"
+                        content="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png"
+                      />
+                      <meta
+                        id="meta-og-url"
+                        property="og:url"
+                        content={window.location.href}
+                      />
+                      <meta
+                        id="meta-og-type"
+                        property="og:type"
+                        content="website"
+                      />
+                      <meta
+                        id="meta-og-site-name"
+                        property="og:site_name"
+                        content="Skeltz.xyz"
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:card"
+                        content="summary_large_image"
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:image"
+                        content="https://res.cloudinary.com/dev-connect/image/upload/v1634297640/skeltz-logo-002_wk7msl.png"
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:title"
+                        content={kit["title"]}
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:site"
+                        content="@useSkeltz"
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:creator"
+                        content={kit["user"]}
+                      />
+                      <meta
+                        id="twitter"
+                        name="twitter:description"
+                        content={kit["markdown_data"]}
+                      />
+                    </Helmet>
                   </p>
                 </div>
                 <div className="flex justify-between">
