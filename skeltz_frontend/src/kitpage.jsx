@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 //import Cookies from "js-cookie";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import Dashboard from "./dashboard";
 import ShareModal from "./components/sharemodal";
 //import Confetti from "./components/itsconfetti";
@@ -108,6 +109,7 @@ export default function KitPage() {
                         kit["markdown_data"] ? kit["markdown_data"] : "Loading"
                       }
                       remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
                     />
                   </p>
                 </div>
