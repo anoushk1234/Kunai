@@ -14,7 +14,8 @@ import os
 import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
-
+# from django.core.management.utils import get_random_secret_key
+# get_random_secret_key()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Initialise environment
 load_dotenv()
 SETMODE = os.environ['SETMODE']
-
+SECRET = os.environ['SECRET']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-c1cg^-j%2l-e_-(0+ey030&yvz@^k$x@%w0pwgm#of%)qrqe+'
+SECRET_KEY = SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if SETMODE == 'prod':
